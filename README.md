@@ -63,7 +63,113 @@ bcastelino.github.io/
 ├── package.json                 # Dependencies and scripts
 └── package-lock.json            # Locked dependency versions
 ```
+## 🔄 Portfolio WorkFlow
+```mermaid
+flowchart TD
+    %% Developer & Repository
+    Dev["Developer & GitHub Repo"]:::dev
+    click Dev "https://github.com/bcastelino/bcastelino.github.io/blob/main/README.md"
 
+    %% CI/CD Pipeline
+    subgraph "CI/CD Pipeline"
+        CI_Checkout["Checkout Code"]:::cicd
+        CI_Install["Install Dependencies (npm ci)"]:::cicd
+        CI_BuildExport["Build & Export (npm run build → next export)"]:::cicd
+        CI_Deploy["Deploy to GitHub Pages"]:::cicd
+    end
+    click CI_Deploy "https://github.com/bcastelino/bcastelino.github.io/blob/main/.github/workflows/main.yml"
+
+    %% Build Artifacts
+    OutDir["./out (Static Build Artifacts)"]:::hosting
+
+    %% Hosting
+    GHPages["GitHub Pages Hosting (CDN)"]:::hosting
+
+    %% End-user Browser
+    Browser["End-user Browser"]:::frontend
+
+    %% External Service
+    Formspree["Formspree Service"]:::external
+
+    %% Frontend Application Components
+    subgraph "Next.js App (TypeScript, Tailwind, Framer Motion)" 
+        NextLayout["Layout & Globals"]:::frontend
+        subgraph "Shared UI Components"
+            Nav["Navigation"]:::frontend
+            ThemeProv["ThemeProvider"]:::frontend
+            ThemeTog["ThemeToggle"]:::frontend
+        end
+        subgraph "Pages"
+            Home["Home Page"]:::frontend
+            About["About Page"]:::frontend
+            Projects["Projects Page"]:::frontend
+            Resume["Resume Page"]:::frontend
+            Contact["Contact Page"]:::frontend
+        end
+        StaticAssets["Static Assets (public/)"]:::frontend
+    end
+    click NextLayout "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/layout.tsx"
+    click NextLayout "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/globals.css"
+    click Nav "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/Navigation.tsx"
+    click ThemeProv "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/ThemeProvider.tsx"
+    click ThemeTog "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/ThemeToggle.tsx"
+    click Home "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/page.tsx"
+    click About "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/about/page.tsx"
+    click Projects "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/projects/page.tsx"
+    click Resume "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/resume/page.tsx"
+    click Contact "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/contact/page.tsx"
+    click StaticAssets "https://github.com/bcastelino/bcastelino.github.io/tree/main/public/"
+
+    %% Configuration Files
+    subgraph "Config Files"
+        NextConfig["next.config.js"]:::config
+        TailwindConfig["tailwind.config.js"]:::config
+        PostCSSConfig["postcss.config.js"]:::config
+        TSConfig["tsconfig.json"]:::config
+        PackageJSON["package.json"]:::config
+    end
+    click NextConfig "https://github.com/bcastelino/bcastelino.github.io/blob/main/next.config.js"
+    click TailwindConfig "https://github.com/bcastelino/bcastelino.github.io/blob/main/tailwind.config.js"
+    click PostCSSConfig "https://github.com/bcastelino/bcastelino.github.io/blob/main/postcss.config.js"
+    click TSConfig "https://github.com/bcastelino/bcastelino.github.io/blob/main/tsconfig.json"
+    click PackageJSON "https://github.com/bcastelino/bcastelino.github.io/blob/main/package.json"
+
+    %% Connections
+    Dev -->|"push / trigger"| CI_Checkout
+    CI_Checkout --> CI_Install
+    CI_Install --> CI_BuildExport
+    CI_BuildExport --> CI_Deploy
+    CI_Deploy --> OutDir
+    OutDir -->|"deploys"| GHPages
+    GHPages -->|"serves static files"| Browser
+
+    Browser -->|"loads app components"| NextLayout
+    Browser -->|"loads UI components & pages"| Nav
+    Browser -->|"loads UI components & pages"| ThemeProv
+    Browser -->|"loads UI components & pages"| ThemeTog
+    Browser -->|"loads pages"| Home
+    Browser -->|"loads pages"| About
+    Browser -->|"loads pages"| Projects
+    Browser -->|"loads pages"| Resume
+    Browser -->|"loads Contact page"| Contact
+    Browser -->|"loads assets"| StaticAssets
+
+    Browser -->|"POST form data"| Formspree
+
+    NextConfig --> CI_BuildExport
+    TailwindConfig --> CI_BuildExport
+    PostCSSConfig --> CI_BuildExport
+    TSConfig --> CI_Install
+    PackageJSON --> CI_Install
+
+    %% Styles
+    classDef frontend fill:#CCE5FF,stroke:#3399FF
+    classDef cicd fill:#DFFFD6,stroke:#33CC33
+    classDef hosting fill:#FFE5CC,stroke:#FF9933
+    classDef external fill:#E5CCFF,stroke:#9933FF
+    classDef config fill:#F0F0F0,stroke:#888888
+    classDef dev fill:#CCCCFF,stroke:#6666FF
+```
 ## � Available Scripts
 
 - **`npm install`** - Install dependencies and generate package-lock.json
@@ -72,7 +178,7 @@ bcastelino.github.io/
 - **`npm run start`** - Start production server
 - **`npm run lint`** - Run ESLint for code quality
 
-## �🚀 Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
