@@ -1,9 +1,12 @@
-# Brian Denis Castelino - Portfolio Website
+<div align="center">
+
+# Github Pages - Static Portfolio Website
 
 [![Deploy Status](https://github.com/bcastelino/bcastelino.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/bcastelino/bcastelino.github.io/actions/workflows/main.yml)
 [![Live Site](https://img.shields.io/badge/Live%20Site-bcastelino.github.io-blue?style=flat&logo=github)](https://bcastelino.github.io)
 
-A modern, responsive personal portfolio website built with Next.js 14, TypeScript, and Tailwind CSS. This website showcases my work as a Data Analyst and AI Enthusiast, featuring a clean design with dark mode support and smooth animations.
+A modern, responsive personal portfolio website built with Next.js 14, TypeScript, and Tailwind CSS. This website can be used to showcase personal work done in any field, featuring a clean design with dark mode support and smooth animations. Best for beginners who want to build a portfolio without worrying about hosting and other related costs!
+</div>
 
 **🌐 Live Site**: [https://bcastelino.github.io](https://bcastelino.github.io)
 
@@ -356,9 +359,9 @@ This is a personal portfolio project, but suggestions and improvements are welco
 ## 📧 Contact
 
 Brian Denis Castelino
-- **Portfolio**: [bcastelino.github.io](https://bcastelino.github.io)
-- **Email**: Use the contact form on the website
-- **GitHub**: [@bcastelino](https://github.com/bcastelino)
+- **Main Portfolio**: [Brian's Portfolio](https://brianc.framer.website/)
+- **Email**: [briancastelino07@gmail.com](mailto:briancastelino07@gmail.com)
+- **LinkedIn**: [@cas7elino](https://www.linkedin.com/in/cas7elino/)
 
 ---
 
