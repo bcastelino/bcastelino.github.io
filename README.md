@@ -1,6 +1,11 @@
 # Brian Denis Castelino - Portfolio Website
 
+[![Deploy Status](https://github.com/bcastelino/bcastelino.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/bcastelino/bcastelino.github.io/actions/workflows/main.yml)
+[![Live Site](https://img.shields.io/badge/Live%20Site-bcastelino.github.io-blue?style=flat&logo=github)](https://bcastelino.github.io)
+
 A modern, responsive personal portfolio website built with Next.js 14, TypeScript, and Tailwind CSS. This website showcases my work as a Data Analyst and AI Enthusiast, featuring a clean design with dark mode support and smooth animations.
+
+**🌐 Live Site**: [https://bcastelino.github.io](https://bcastelino.github.io)
 
 ## 🌟 Features
 
@@ -12,6 +17,7 @@ A modern, responsive personal portfolio website built with Next.js 14, TypeScrip
 - **Resume Download**: Direct access to downloadable resume
 - **Projects Showcase**: Dedicated section for highlighting key projects
 - **Static Export**: Optimized for GitHub Pages deployment
+- **Automatic Deployment**: GitHub Actions workflow for seamless updates
 
 ## 🛠️ Tech Stack
 
@@ -21,46 +27,59 @@ A modern, responsive personal portfolio website built with Next.js 14, TypeScrip
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Icons**: [Heroicons](https://heroicons.com/)
 - **Form Handling**: [Formspree React](https://formspree.io/)
-- **Deployment**: GitHub Pages
+- **Deployment**: GitHub Pages with GitHub Actions
+- **Package Manager**: npm
 
 ## 📁 Project Structure
 
 ```
 bcastelino.github.io/
-├── app/                          # Next.js App Router directory
+├── .github/workflows/
+│   └── main.yml                 # GitHub Actions deployment workflow
+├── app/                         # Next.js App Router directory
 │   ├── globals.css              # Global styles and Tailwind imports
 │   ├── layout.tsx               # Root layout with navigation and theme
 │   ├── page.tsx                 # Homepage with hero section
 │   ├── Navigation.tsx           # Navigation component with mobile menu
 │   ├── ThemeProvider.tsx        # Theme context provider
-│   ├── ThemeToggle.tsx         # Dark/light mode toggle
+│   ├── ThemeToggle.tsx          # Dark/light mode toggle
 │   ├── about/
-│   │   └── page.tsx            # About page with background and education
+│   │   └── page.tsx             # About page with background and education
 │   ├── contact/
-│   │   └── page.tsx            # Contact page with form integration
+│   │   └── page.tsx             # Contact page with form integration
 │   ├── projects/
-│   │   └── page.tsx            # Projects showcase page
+│   │   └── page.tsx             # Projects showcase page
 │   └── resume/
-│       └── page.tsx            # Resume page with download link
+│       └── page.tsx             # Resume page with download link
 ├── public/                      # Static assets
-│   ├── certificates/           # Certificate images
-│   ├── logos/                  # Institution and company logos
-│   ├── personal/               # Profile photo and resume PDF
-│   └── projects/               # Project screenshots
-├── next.config.js              # Next.js configuration for static export
-├── tailwind.config.js          # Tailwind CSS configuration
-├── tsconfig.json               # TypeScript configuration
-└── package.json                # Dependencies and scripts
+│   ├── .nojekyll                # GitHub Pages configuration
+│   ├── certificates/            # Certificate images
+│   ├── logos/                   # Institution and company logos
+│   ├── personal/                # Profile photo and resume PDF
+│   └── projects/                # Project screenshots
+├── next.config.js               # Next.js configuration for static export
+├── tailwind.config.js           # Tailwind CSS configuration
+├── tsconfig.json                # TypeScript configuration
+├── package.json                 # Dependencies and scripts
+└── package-lock.json            # Locked dependency versions
 ```
 
-## 🚀 Getting Started
+## � Available Scripts
+
+- **`npm install`** - Install dependencies and generate package-lock.json
+- **`npm run dev`** - Start development server (http://localhost:3000)
+- **`npm run build`** - Build for production (outputs to `./out`)
+- **`npm run start`** - Start production server
+- **`npm run lint`** - Run ESLint for code quality
+
+## �🚀 Getting Started
 
 ### Prerequisites
 
 - Node.js 18.0 or later
-- npm or yarn package manager
+- npm package manager
 
-### Installation
+### Local Development
 
 1. **Clone the repository**
    ```bash
@@ -71,25 +90,33 @@ bcastelino.github.io/
 2. **Install dependencies**
    ```bash
    npm install
-   # or
-   yarn install
    ```
 
 3. **Start the development server**
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
 
 4. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000) to see the website
+
+### Production Deployment
+
+The site automatically deploys to GitHub Pages when you push to the main branch. The deployment process:
+
+1. **GitHub Actions triggers** on push to main
+2. **Builds the Next.js app** using `npm run build`
+3. **Exports static files** to `./out` directory
+4. **Deploys to GitHub Pages** at https://bcastelino.github.io
 
 ## 📦 Build and Deployment
 
 ### Local Build
 
 ```bash
+# Install dependencies
+npm install
+
 # Build for production
 npm run build
 
@@ -99,11 +126,18 @@ npm start
 
 ### GitHub Pages Deployment
 
-This project is configured for automatic deployment to GitHub Pages:
+This project is configured for automatic deployment to GitHub Pages using GitHub Actions:
 
-1. **Push to main branch** - GitHub Actions will automatically build and deploy
-2. **Static export** - Next.js exports static HTML/CSS/JS files
-3. **Custom domain** - Configure in repository settings if using custom domain
+1. **Push to main branch** - GitHub Actions automatically builds and deploys
+2. **Static export** - Next.js exports static HTML/CSS/JS files to `./out` directory
+3. **Live deployment** - Site is available at https://bcastelino.github.io
+
+**Deployment Workflow** (`.github/workflows/main.yml`):
+- ✅ Node.js 20 with npm caching
+- ✅ Installs dependencies with `npm ci`
+- ✅ Builds with `npm run build`
+- ✅ Deploys `./out` folder to GitHub Pages
+- ✅ Automatic deployment on every push to main
 
 The `next.config.js` is configured with:
 - `output: 'export'` for static generation
@@ -146,10 +180,11 @@ const [state, handleSubmit] = useForm("YOUR_FORMSPREE_ID");
 
 ## 📝 Available Scripts
 
-- **`npm run dev`** - Start development server
-- **`npm run build`** - Build for production
+- **`npm install`** - Install dependencies and generate package-lock.json
+- **`npm run dev`** - Start development server (http://localhost:3000)
+- **`npm run build`** - Build for production (outputs to `./out`)
 - **`npm run start`** - Start production server
-- **`npm run lint`** - Run ESLint
+- **`npm run lint`** - Run ESLint for code quality
 
 ## 🧩 Key Components
 
@@ -182,10 +217,21 @@ The website is fully responsive with breakpoints:
 
 ## 🔧 Configuration Files
 
-- **`next.config.js`** - Next.js configuration for static export
-- **`tailwind.config.js`** - Tailwind CSS configuration with dark mode
+- **`next.config.js`** - Next.js configuration for static export and GitHub Pages
+- **`tailwind.config.js`** - Tailwind CSS configuration with dark mode support
 - **`tsconfig.json`** - TypeScript compiler options
-- **`postcss.config.js`** - PostCSS configuration for Tailwind
+- **`postcss.config.js`** - PostCSS configuration for Tailwind processing
+- **`package.json`** - Project dependencies and npm scripts
+- **`package-lock.json`** - Locked dependency versions for consistent builds
+- **`.github/workflows/main.yml`** - GitHub Actions deployment workflow
+- **`public/.nojekyll`** - Prevents Jekyll processing on GitHub Pages
+
+## 📊 Deployment Status
+
+You can monitor the deployment status:
+- **Actions Tab**: Visit the [Actions tab](https://github.com/bcastelino/bcastelino.github.io/actions) to see build logs
+- **Live Site**: https://bcastelino.github.io
+- **Build Badge**: ![Deploy Status](https://github.com/bcastelino/bcastelino.github.io/actions/workflows/main.yml/badge.svg)
 
 ## 📄 License
 
