@@ -33,9 +33,10 @@ const themeInitScript = `
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-    if (location.hash && location.hash !== '#home') {
-      // Preserve existing state so Next.js's App Router internals (stored
-      // on history.state) aren't wiped out.
+    if (location.hash && location.hash !== '#home' && history.state) {
+      // Only replaceState when Next.js's App Router state is already present;
+      // otherwise we'd persist a null history.state and Next's popstate handler
+      // would later crash reading __PRIVATE_NEXTJS_INTERNALS_TREE.
       history.replaceState(history.state, '', location.pathname + location.search);
     }
     window.addEventListener('load', function () { window.scrollTo(0, 0); });

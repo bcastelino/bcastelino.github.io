@@ -4,16 +4,17 @@ import React, { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navItems, personal } from "../lib/data";
+import { ThemeToggle } from "./ThemeToggle";
 
 const ACCENT = "var(--accent)";
 
 export default function Header() {
-  const [isDark, setIsDark] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  // Initialise theme from storage / DOM
+  // Initialise theme from storage / DOM (the ThemeToggle reads the resulting
+  // `.dark` class on mount, so we just need to set it here).
   useEffect(() => {
     const stored = typeof window !== "undefined" ? window.localStorage.getItem("theme") : null;
     const prefersDark =
@@ -21,7 +22,6 @@ export default function Header() {
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const initialDark = stored ? stored === "dark" : prefersDark || true;
-    setIsDark(initialDark);
     document.documentElement.classList.toggle("dark", initialDark);
   }, []);
 
@@ -41,13 +41,6 @@ export default function Header() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMenuOpen]);
-
-  const toggleTheme = () => {
-    const next = !isDark;
-    setIsDark(next);
-    document.documentElement.classList.toggle("dark", next);
-    window.localStorage.setItem("theme", next ? "dark" : "light");
-  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 py-3 sm:py-6">
@@ -91,9 +84,10 @@ export default function Header() {
                       if (item.href === "#home") {
                         e.preventDefault();
                         if (typeof window !== "undefined") {
-                          if (history.replaceState) {
-                            // Preserve history.state so Next.js's App Router
-                            // internals aren't wiped out.
+                          // Only replaceState when Next.js's App Router state
+                          // is present; otherwise Next's popstate handler will
+                          // crash trying to read __PRIVATE_NEXTJS_INTERNALS_TREE.
+                          if (history.replaceState && history.state) {
                             history.replaceState(
                               history.state,
                               "",
@@ -121,9 +115,10 @@ export default function Header() {
             e.preventDefault();
             // Always scroll to the top / Hero, even if already at #home.
             if (typeof window !== "undefined") {
-              if (history.replaceState) {
-                // Preserve history.state so Next.js's App Router internals
-                // aren't wiped out.
+              // Only replaceState when Next.js's App Router state is present;
+              // otherwise Next's popstate handler will crash trying to read
+              // __PRIVATE_NEXTJS_INTERNALS_TREE off a null state.
+              if (history.replaceState && history.state) {
                 history.replaceState(
                   history.state,
                   "",
@@ -134,7 +129,7 @@ export default function Header() {
             }
             setIsMenuOpen(false);
           }}
-          className="text-3xl sm:text-4xl select-none transition-colors duration-300 text-neutral-900 dark:text-white hover:text-[color:var(--accent)]"
+          className="signature-glow text-3xl sm:text-4xl select-none transition-all duration-300 text-neutral-900 dark:text-white hover:text-[color:var(--accent)]"
           style={{ fontFamily: "'Brush Script MT', 'Lucida Handwriting', cursive" }}
           aria-label="Home"
         >
@@ -142,26 +137,25 @@ export default function Header() {
         </a>
 
         {/* Theme toggle */}
-        <button
-          type="button"
-          onClick={toggleTheme}
-          className="relative w-14 h-7 sm:w-16 sm:h-8 rounded-full hover:opacity-80 transition-opacity bg-neutral-200 dark:bg-neutral-800"
-          aria-label="Toggle theme"
-        >
-          <span
-            className="absolute top-1 left-1 w-5 h-5 sm:w-6 sm:h-6 rounded-full transition-transform duration-300 bg-neutral-900 dark:bg-white"
-            style={{
-              transform: isDark
-                ? "translateX(calc(100% + 0.25rem))"
-                : "translateX(0)",
-            }}
-          />
-        </button>
+        <ThemeToggle
+          variant="icon"
+          onThemeChange={(next) => {
+            if (typeof window !== "undefined") {
+              window.localStorage.setItem("theme", next);
+            }
+          }}
+        />
       </nav>
 
       <style jsx>{`
         .menu-link:hover {
           color: ${ACCENT} !important;
+        }
+        .signature-glow:hover {
+          text-shadow:
+            0 0 6px color-mix(in srgb, ${ACCENT} 70%, transparent),
+            0 0 16px color-mix(in srgb, ${ACCENT} 55%, transparent),
+            0 0 32px color-mix(in srgb, ${ACCENT} 35%, transparent);
         }
       `}</style>
     </header>

@@ -49,7 +49,12 @@ export default function About() {
           {skillGroups.map((group) => (
             <div
               key={group.title}
-              className="border border-neutral-200 dark:border-neutral-800 rounded-lg p-5 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-colors hover:border-[color:var(--accent)]"
+              className="rounded-lg p-5 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-colors hover:border-[color:var(--accent)]"
+              style={{
+                border: "1px solid color-mix(in srgb, var(--accent) 28%, transparent)",
+                boxShadow:
+                  "0 0 0 1px color-mix(in srgb, var(--accent) 10%, transparent) inset",
+              }}
             >
               <h4
                 className="text-base font-semibold mb-3 text-neutral-900 dark:text-white"

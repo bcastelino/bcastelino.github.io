@@ -83,3 +83,9 @@ canvas {
 .animate-bounce-slow {
   animation: bounce-slow 2s ease-in-out infinite;
 }
+
+/* Subtle accent border around each story-scroll card. */
+.flow-art-container {
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 10%, transparent) inset;
+}

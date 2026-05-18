@@ -17,7 +17,7 @@ export const personal = {
   signature: "Br",
   tagline: "Turning messy data into meaningful stories - one query at a time.",
   email: "briancastelino07@gmail.com",
-  location: "Fairfax, VA, USA",
+  location: "Dallas, TX, USA",
   resumePath: "https://drive.google.com/file/d/1MnCNBxaT8iKWHRXc0wxg1Oh9if54YKhi/view",
   profileImage: "/personal/profile.jpg",
   socials: {
@@ -27,7 +27,7 @@ export const personal = {
   },
 };
 
-export const aboutIntro = `I'm a data analyst who actually enjoys spreadsheets and writing SQL for fun - yes, those people exist. I turn messy, chaotic data into clean, meaningful insights that help teams make smarter decisions. I work with Python, SQL, Tableau, and Power BI to decode everything from financial reports to mysterious system logs. Lately I've been investing my time in Generative AI & LLMs, building side projects inspired by their endless possibilities - because why relax when you can automate?`;
+export const aboutIntro = `Results-driven AI Data Engineer and Product Analytics professional with 4.5+ years of experience designing scalable data platforms, deploying machine learning solutions, and delivering data-driven insights across enterprise environments. Proven expertise in Databricks, cloud ecosystems (AWS, GCP, Azure), MLOps automation, and advanced analytics, with a track record of improving forecasting accuracy, reducing deployment cycles, and enabling real-time decision-making at scale. Adept at building end-to-end data pipelines, LLM-powered applications, and self-service BI solutions that drive measurable business impact. Strong collaborator with cross-functional teams, combining technical depth with business acumen to translate complex data into actionable strategies. Holds an MS in Data Modeling and Warehousing with multiple cloud and Databricks certifications.`;
 
 export const interests: string[] = [
   "Building Ultimate Team squads on FC25 (PS5).",
@@ -51,7 +51,7 @@ export const skillGroups = [
   },
   {
     title: "AI & LLMs",
-    items: ["Generative AI", "LLMs", "RAG", "LangChain", "OpenAI"],
+    items: ["Generative AI", "LLMs", "RAG", "LangChain", "OpenAI", "OpenRoter", "HuggingFace", "Claude Code"],
   },
   {
     title: "Dashboards & BI",
