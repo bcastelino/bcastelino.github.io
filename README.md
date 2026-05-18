@@ -1,407 +1,245 @@
 <div align="center">
 
-# Github Pages - Static Portfolio Website
+# bcastelino.github.io - Personal Portfolio
 
 [![Deploy Status](https://github.com/bcastelino/bcastelino.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/bcastelino/bcastelino.github.io/actions/workflows/main.yml)
 [![Live Site](https://img.shields.io/badge/Live%20Site-bcastelino.github.io-blue?style=flat&logo=github)](https://bcastelino.github.io)
 
-A modern, responsive personal portfolio website built with Next.js 14, TypeScript, and Tailwind CSS. This website can be used to showcase personal work done in any field, featuring a clean design with dark mode support and smooth animations. Best for beginners who want to build a portfolio without worrying about hosting and other related costs!
+A single-page, scroll-driven portfolio built with **Next.js 14**, **TypeScript**, **Tailwind CSS**, **Framer Motion** and **GSAP ScrollTrigger**. Statically exported and deployed to GitHub Pages via GitHub Actions.
+
 </div>
 
-**🌐 Live Site**: [https://bcastelino.github.io](https://bcastelino.github.io)
+> **🌐 Live Site**: <https://bcastelino.github.io>
 
-## 🌟 Features
+---
 
-- **Modern Design**: Clean, professional layout with gradient backgrounds and glassmorphism effects
-- **Dark Mode**: Toggle between light and dark themes with system preference detection
-- **Responsive**: Fully responsive design that works on all device sizes
-- **Smooth Animations**: Framer Motion animations for enhanced user experience
-- **Contact Form**: Integrated contact form powered by Formspree
-- **Resume Download**: Direct access to downloadable resume
-- **Projects Showcase**: Dedicated section for highlighting key projects
-- **Static Export**: Optimized for GitHub Pages deployment
-- **Automatic Deployment**: GitHub Actions workflow for seamless updates
+## ✨ Highlights
+
+- **Single-page story scroll** - every section pins, and the next one flips in over it via GSAP `ScrollTrigger` (rotation pivot at the bottom-left). Honors `prefers-reduced-motion` and is auto-disabled on touch/small screens to avoid pin jank.
+- **Fully responsive** - fluid `clamp()` typography for the hero, breakpoint-aware grids in every section, explicit `viewport` meta, and a global `overflow-x: hidden` safety net for mobile / tablet / desktop.
+- **Always-home navigation** - refresh disables `history.scrollRestoration` and clears any stray hash, so the page always lands at the Hero. The `Br` signature and `HOME` menu item both force a smooth scroll to the top, even when already at `#home`.
+- **Theme-aware lime accent** - bright `#C3E41D` in dark mode, darker olive `#5C7C12` in light mode for accessible contrast on white. Driven by CSS variables (`--accent` / `--accent-fg`).
+- **Hero with blur-in animation + mouse parallax** - `BRIAN` / `CASTELINO` rendered in Fira Code with a per-letter blur-reveal (`BlurText`), a circular profile overlay, and a subtle cursor-driven parallax (text drifts opposite the mouse, centered on the viewport).
+- **Interactive hover buttons** - reusable `InteractiveHoverButton` with an expanding-dot fill, slide-in action label, and an idle → loading → success lifecycle. Used for the contact form submit (driven by Formspree state) and the résumé download CTA.
+- **Auto GitHub social previews** - each project card pulls its preview straight from `opengraph.githubassets.com` based on the `owner/repo` it points to. Falls back to a placeholder on error.
+- **Real certifications** - badge PNGs in `public/badges/` and PDF artifacts in `public/certificates/`, mapped through a single data array.
+- **Formspree-backed contact form** with success/error animations.
+- **Static export** for GitHub Pages, with a Pages workflow that **skips deploys when only docs/tooling files change**.
+
+---
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Next.js 14](https://nextjs.org/) with App Router
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Heroicons](https://heroicons.com/)
-- **Form Handling**: [Formspree React](https://formspree.io/)
-- **Deployment**: GitHub Pages with GitHub Actions
-- **Package Manager**: npm
+| Concern              | Choice                                                  |
+| -------------------- | ------------------------------------------------------- |
+| Framework            | [Next.js 14](https://nextjs.org/) (App Router)          |
+| Language             | [TypeScript](https://www.typescriptlang.org/)           |
+| Styling              | [Tailwind CSS](https://tailwindcss.com/) + CSS vars     |
+| Reveal animations    | [Framer Motion](https://www.framer.com/motion/)         |
+| Scroll choreography  | [GSAP](https://gsap.com/) + ScrollTrigger + `@gsap/react` |
+| Icons                | [lucide-react](https://lucide.dev/)                     |
+| Contact form         | [@formspree/react](https://formspree.io/)               |
+| Fonts                | `next/font/google` - Inter + Fira Code                  |
+| Hosting              | GitHub Pages (static export)                            |
+| CI/CD                | GitHub Actions                                          |
+
+---
 
 ## 📁 Project Structure
 
 ```
 bcastelino.github.io/
 ├── .github/workflows/
-│   └── main.yml                 # GitHub Actions deployment workflow
-├── app/                         # Next.js App Router directory
-│   ├── globals.css              # Global styles and Tailwind imports
-│   ├── layout.tsx               # Root layout with navigation and theme
-│   ├── page.tsx                 # Homepage with hero section
-│   ├── Navigation.tsx           # Navigation component with mobile menu
-│   ├── ThemeProvider.tsx        # Theme context provider
-│   ├── ThemeToggle.tsx          # Dark/light mode toggle
-│   ├── about/
-│   │   └── page.tsx             # About page with background and education
-│   ├── contact/
-│   │   └── page.tsx             # Contact page with form integration
-│   ├── projects/
-│   │   └── page.tsx             # Projects showcase page
-│   └── resume/
-│       └── page.tsx             # Resume page with download link
-├── public/                      # Static assets
-│   ├── .nojekyll                # GitHub Pages configuration
-│   ├── certificates/            # Certificate images
-│   ├── logos/                   # Institution and company logos
-│   ├── personal/                # Profile photo and resume PDF
-│   └── projects/                # Project screenshots
-├── next.config.js               # Next.js configuration for static export
-├── tailwind.config.js           # Tailwind CSS configuration
-├── tsconfig.json                # TypeScript configuration
-├── package.json                 # Dependencies and scripts
-└── package-lock.json            # Locked dependency versions
+│   └── main.yml                  # Pages deploy; ignores docs/tooling changes
+├── app/
+│   ├── layout.tsx                # Root layout, fonts, inline theme bootstrap
+│   ├── page.tsx                  # Single page → composes Header + FlowArt + Footer
+│   ├── globals.css               # CSS vars, theme tokens, scrollbar, animations
+│   ├── lib/
+│   │   └── data.ts               # All content: personal, projects, experience,
+│   │                             # education, certifications, skills, nav
+│   └── components/
+│       ├── Header.tsx            # Fixed nav: menu (HOME = scroll-to-top), signature, theme toggle
+│       ├── Hero.tsx              # BRIAN / CASTELINO hero + mouse parallax (FlowSection)
+│       ├── BlurText.tsx          # Per-letter / per-word blur-reveal animation
+│       ├── FlowArt.tsx           # GSAP story-scroll: pin + rotate-in (off on mobile)
+│       ├── Section.tsx           # Shared section shell (FlowSection wrapper)
+│       ├── InteractiveHoverButton.tsx  # Dot-fill CTA with idle/loading/success states
+│       ├── Footer.tsx
+│       └── sections/
+│           ├── About.tsx
+│           ├── Projects.tsx      # GitHub OG previews + onError fallback
+│           ├── Experience.tsx    # Timeline
+│           ├── Education.tsx
+│           ├── Certifications.tsx# Badge PNG → PDF link
+│           └── Contact.tsx       # Formspree form + résumé button
+├── public/
+│   ├── personal/                 # Profile photo
+│   ├── projects/                 # Optional project screenshots / placeholder
+│   ├── badges/                   # Certification badge PNGs
+│   ├── certificates/             # Issued PDF certificates
+│   └── logos/                    # Company / school logos
+├── next.config.js                # output: 'export', trailingSlash, unoptimized images
+├── tailwind.config.js            # accent color, font variables, class dark mode
+├── postcss.config.js
+├── tsconfig.json
+├── package.json
+└── README.md
 ```
-## 🔄 Portfolio WorkFlow
-```mermaid
-flowchart TD
-    %% Developer & Repository
-    Dev["Developer & GitHub Repo"]:::dev
-    click Dev "https://github.com/bcastelino/bcastelino.github.io/blob/main/README.md"
 
-    %% CI/CD Pipeline
-    subgraph "CI/CD Pipeline"
-        CI_Checkout["Checkout Code"]:::cicd
-        CI_Install["Install Dependencies (npm ci)"]:::cicd
-        CI_BuildExport["Build & Export (npm run build → next export)"]:::cicd
-        CI_Deploy["Deploy to GitHub Pages"]:::cicd
-    end
-    click CI_Deploy "https://github.com/bcastelino/bcastelino.github.io/blob/main/.github/workflows/main.yml"
+---
 
-    %% Build Artifacts
-    OutDir["./out (Static Build Artifacts)"]:::hosting
+## 🧭 How a visitor experiences the site
 
-    %% Hosting
-    GHPages["GitHub Pages Hosting (CDN)"]:::hosting
+1. **Theme + scroll position are set before paint** - an inline script in `app/layout.tsx` reads `localStorage.theme` (or defaults to dark), toggles `.dark` on `<html>` to avoid a flash, sets `history.scrollRestoration = 'manual'`, and clears any non-`#home` hash so a refresh always lands on the Hero.
+2. **Hero** appears first - `BlurText` letters fade and de-blur in sequence over Fira Code; the circular profile image overlays the name; a tagline below uses the same effect at the word level; on pointer devices the name follows the cursor with a subtle inverse parallax.
+3. **Story scroll begins** - as you scroll past the hero on desktop/tablet (≥ 768 px), the About section pins at its bottom and the Projects section flips in over it from `rotation: 30deg` to `0deg` (origin: bottom-left). Each subsequent section does the same. On mobile the choreography is disabled and sections simply stack.
+4. **Each section's content** uses Framer Motion `whileInView` for its internal cards/timeline items so the reveals stay snappy.
+5. **Contact form** posts to Formspree; the `InteractiveHoverButton` submit reflects `idle → loading → success` directly from Formspree state.
 
-    %% End-user Browser
-    Browser["End-user Browser"]:::frontend
-
-    %% External Service
-    Formspree["Formspree Service"]:::external
-
-    %% Frontend Application Components
-    subgraph "Next.js App (TypeScript, Tailwind, Framer Motion)" 
-        NextLayout["Layout & Globals"]:::frontend
-        subgraph "Shared UI Components"
-            Nav["Navigation"]:::frontend
-            ThemeProv["ThemeProvider"]:::frontend
-            ThemeTog["ThemeToggle"]:::frontend
-        end
-        subgraph "Pages"
-            Home["Home Page"]:::frontend
-            About["About Page"]:::frontend
-            Projects["Projects Page"]:::frontend
-            Resume["Resume Page"]:::frontend
-            Contact["Contact Page"]:::frontend
-        end
-        StaticAssets["Static Assets (public/)"]:::frontend
-    end
-    click NextLayout "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/layout.tsx"
-    click NextLayout "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/globals.css"
-    click Nav "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/Navigation.tsx"
-    click ThemeProv "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/ThemeProvider.tsx"
-    click ThemeTog "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/ThemeToggle.tsx"
-    click Home "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/page.tsx"
-    click About "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/about/page.tsx"
-    click Projects "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/projects/page.tsx"
-    click Resume "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/resume/page.tsx"
-    click Contact "https://github.com/bcastelino/bcastelino.github.io/blob/main/app/contact/page.tsx"
-    click StaticAssets "https://github.com/bcastelino/bcastelino.github.io/tree/main/public/"
-
-    %% Configuration Files
-    subgraph "Config Files"
-        NextConfig["next.config.js"]:::config
-        TailwindConfig["tailwind.config.js"]:::config
-        PostCSSConfig["postcss.config.js"]:::config
-        TSConfig["tsconfig.json"]:::config
-        PackageJSON["package.json"]:::config
-    end
-    click NextConfig "https://github.com/bcastelino/bcastelino.github.io/blob/main/next.config.js"
-    click TailwindConfig "https://github.com/bcastelino/bcastelino.github.io/blob/main/tailwind.config.js"
-    click PostCSSConfig "https://github.com/bcastelino/bcastelino.github.io/blob/main/postcss.config.js"
-    click TSConfig "https://github.com/bcastelino/bcastelino.github.io/blob/main/tsconfig.json"
-    click PackageJSON "https://github.com/bcastelino/bcastelino.github.io/blob/main/package.json"
-
-    %% Connections
-    Dev -->|"push / trigger"| CI_Checkout
-    CI_Checkout --> CI_Install
-    CI_Install --> CI_BuildExport
-    CI_BuildExport --> CI_Deploy
-    CI_Deploy --> OutDir
-    OutDir -->|"deploys"| GHPages
-    GHPages -->|"serves static files"| Browser
-
-    Browser -->|"loads app components"| NextLayout
-    Browser -->|"loads UI components & pages"| Nav
-    Browser -->|"loads UI components & pages"| ThemeProv
-    Browser -->|"loads UI components & pages"| ThemeTog
-    Browser -->|"loads pages"| Home
-    Browser -->|"loads pages"| About
-    Browser -->|"loads pages"| Projects
-    Browser -->|"loads pages"| Resume
-    Browser -->|"loads Contact page"| Contact
-    Browser -->|"loads assets"| StaticAssets
-
-    Browser -->|"POST form data"| Formspree
-
-    NextConfig --> CI_BuildExport
-    TailwindConfig --> CI_BuildExport
-    PostCSSConfig --> CI_BuildExport
-    TSConfig --> CI_Install
-    PackageJSON --> CI_Install
-
-    %% Styles
-    classDef frontend fill:#CCE5FF,stroke:#3399FF
-    classDef cicd fill:#DFFFD6,stroke:#33CC33
-    classDef hosting fill:#FFE5CC,stroke:#FF9933
-    classDef external fill:#E5CCFF,stroke:#9933FF
-    classDef config fill:#F0F0F0,stroke:#888888
-    classDef dev fill:#CCCCFF,stroke:#6666FF
-```
-## � Available Scripts
-
-- **`npm install`** - Install dependencies and generate package-lock.json
-- **`npm run dev`** - Start development server (http://localhost:3000)
-- **`npm run build`** - Build for production (outputs to `./out`)
-- **`npm run start`** - Start production server
-- **`npm run lint`** - Run ESLint for code quality
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18.0 or later
-- npm package manager
+- **Node.js** 18 or later
+- **npm**
 
-### Local Development
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/bcastelino/bcastelino.github.io.git
-   cd bcastelino.github.io
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000) to see the website
-
-### Production Deployment
-
-The site automatically deploys to GitHub Pages when you push to the main branch. The deployment process:
-
-1. **GitHub Actions triggers** on push to main
-2. **Builds the Next.js app** using `npm run build`
-3. **Exports static files** to `./out` directory
-4. **Deploys to GitHub Pages** at https://bcastelino.github.io
-
-## 📦 Build and Deployment
-
-### Local Build
+### Local development
 
 ```bash
-# Install dependencies
+git clone https://github.com/bcastelino/bcastelino.github.io.git
+cd bcastelino.github.io
 npm install
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
+npm run dev
 ```
 
-### GitHub Pages Deployment
+Open <http://localhost:3000> - hot reload is enabled.
 
-This project is configured for automatic deployment to GitHub Pages using GitHub Actions:
+### Production build
 
-1. **Push to main branch** - GitHub Actions automatically builds and deploys
-2. **Static export** - Next.js exports static HTML/CSS/JS files to `./out` directory
-3. **Live deployment** - Site is available at https://bcastelino.github.io
+```bash
+npm run build      # outputs static export to ./out
+```
 
-**Deployment Workflow** (`.github/workflows/main.yml`):
-- ✅ Node.js 20 with npm caching
-- ✅ Installs dependencies with `npm ci`
-- ✅ Builds with `npm run build`
-- ✅ Deploys `./out` folder to GitHub Pages
-- ✅ Automatic deployment on every push to main
+> Don't run `npm run build` while `npm run dev` is active - both write to `.next/` and will conflict. Stop the dev server first, or use a separate clone.
 
-The `next.config.js` is configured with:
-- `output: 'export'` for static generation
-- `trailingSlash: true` for GitHub Pages compatibility
-- `images: { unoptimized: true }` for static hosting
+### Available scripts
 
-## 🎨 Customization
+| Command         | Purpose                                              |
+| --------------- | ---------------------------------------------------- |
+| `npm run dev`   | Start dev server with HMR on <http://localhost:3000> |
+| `npm run build` | Static export → `./out` for GitHub Pages             |
+| `npm run start` | Serve the production build locally                   |
+| `npm run lint`  | Run `next lint`                                      |
 
-### Personal Information
+---
 
-Update the following files with your information:
+## 🎨 Customising the site
 
-- **`app/page.tsx`** - Hero section with name and description
-- **`app/about/page.tsx`** - About section, education, and experience
-- **`app/projects/page.tsx`** - Projects data and descriptions
-- **`app/layout.tsx`** - Site metadata and title
+All content lives in **`app/lib/data.ts`** - there is no CMS. Edit the arrays and objects and the site updates automatically.
+
+| What you want to change         | Where to edit                                                         |
+| ------------------------------- | --------------------------------------------------------------------- |
+| Name, tagline, socials, email   | `personal` object in `app/lib/data.ts`                                |
+| About copy + interests          | `aboutIntro` string + `interests` array                               |
+| Skills grouped by category      | `skillGroups` array                                                   |
+| Projects                        | `projects` array - set `repo: "owner/name"` for auto OG               |
+| Experience timeline             | `experience` array                                                    |
+| Education cards                 | `education` array                                                     |
+| Certifications                  | `certifications` array - `badge` PNG + `pdf` path                     |
+| Nav menu labels / order         | `navItems` array                                                      |
+| Theme colors                    | `:root` and `.dark` CSS variables in `app/globals.css`                |
+| Hero size / font                | `NAME_SIZE_CLASSES` (`clamp()`) in `app/components/Hero.tsx`          |
+| Hero parallax intensity         | `max` constant in the mousemove handler in `Hero.tsx`                 |
+| Education summary + coursework  | `summary` (paragraph) + `description` (pills) on each `EducationItem` |
+| CTA button look + states        | `app/components/InteractiveHoverButton.tsx`                           |
+| Section animations              | Framer Motion props inside each section component                     |
+| Scroll choreography             | Tweens / triggers in `app/components/FlowArt.tsx`                     |
 
 ### Assets
 
-Replace assets in the `public/` directory:
+| Folder                | Drop in                                                    |
+| --------------------- | ---------------------------------------------------------- |
+| `public/personal/`    | Profile photo (`profile.jpg`)                              |
+| `public/badges/`      | Square certification badge PNGs                            |
+| `public/certificates/`| Issued certificate PDFs                                    |
+| `public/logos/`       | Company / school logos                                     |
+| `public/projects/`    | Manual project screenshots (used when `repo` is unset, or as the fallback if the OG fetch fails) |
 
-- **`public/personal/profile.jpg`** - Your profile photo
-- **`public/personal/brian-castelino-resume.pdf`** - Your resume PDF
-- **`public/projects/`** - Project screenshots
-- **`public/logos/`** - Institution/company logos
+### Contact form
 
-### Contact Form
+The form posts to Formspree. Update the form ID in `app/components/sections/Contact.tsx`:
 
-The contact form uses Formspree. Update the form ID in `app/contact/page.tsx`:
-
-```typescript
+```ts
 const [state, handleSubmit] = useForm("YOUR_FORMSPREE_ID");
 ```
 
-### Styling
+### Resume link
 
-- **Colors**: Modify gradient colors in Tailwind classes
-- **Fonts**: Update font imports in `app/layout.tsx`
-- **Animations**: Customize Framer Motion animations in components
+Set `personal.resumePath` in `app/lib/data.ts` - can be a local PDF under `public/` or any external URL (the current site uses a Google Drive link).
 
-## 📝 Available Scripts
+---
 
-- **`npm install`** - Install dependencies and generate package-lock.json
-- **`npm run dev`** - Start development server (http://localhost:3000)
-- **`npm run build`** - Build for production (outputs to `./out`)
-- **`npm run start`** - Start production server
-- **`npm run lint`** - Run ESLint for code quality
+## 🧩 Notable implementation details
 
-## 🧩 Key Components
+- **`FlowArt` (`app/components/FlowArt.tsx`)** - finds every `[data-flow-section]` descendant and, for each, pins it at `bottom bottom → bottom top` and tweens the next one's inner from `rotation: 30deg` to `0deg` between `top bottom` and `top 25%`. The hero is also a FlowSection so the first content section flips in over it. `prefers-reduced-motion` **or** a viewport ≤ 767 px disables the GSAP setup entirely.
+- **`BlurText` (`app/components/BlurText.tsx`)** - IntersectionObserver-driven; once the element enters the viewport each letter/word transitions from `blur(10px) translateY(-20px) opacity:0` to `blur(0) translateY(0) opacity:1` with a configurable per-segment delay.
+- **Hero parallax (`app/components/Hero.tsx`)** - a `mousemove` handler (rAF-throttled) normalises the cursor position to ±1 around the viewport center and applies `translate3d(-nx*max%, -ny*max%, 0)` to the name wrapper. Negated, so the text drifts opposite the cursor; capped at ±4% so it stays subtle. Skipped on coarse pointers and when `prefers-reduced-motion` is set.
+- **`InteractiveHoverButton` (`app/components/InteractiveHoverButton.tsx`)** - supports both `as="button"` (with optional external `status` override) and `as="a"`. The resting dot uses `scale-[120]` on hover so the accent fill comfortably covers full-width buttons; the action label slides in from the left with `translate-x` + `opacity`. No `clsx` / `tailwind-merge` dependency.
+- **Always-home navigation** - the boot script in `<head>` sets `history.scrollRestoration = 'manual'` and strips non-`#home` hashes on load. The `Br` signature and the `HOME` menu item both `preventDefault` and call `window.scrollTo({ top: 0, behavior: 'smooth' })`, which works even when already at `#home` (where browsers normally no-op).
+- **Project previews** - `githubSocialImage("owner/repo")` returns `https://opengraph.githubassets.com/1/owner/repo`. The image lives inside a small client component (`ProjectPreview`) so its `onError` handler can swap to `/projects/project-placeholder.jpg` if the OG endpoint 4xx's (e.g. private repos).
+- **Theme toggle** - a small inline script in `<head>` applies the saved theme **before paint**, then the `Header` button flips the `.dark` class on `<html>` and persists to `localStorage`.
 
-### Navigation
-- Responsive navigation with mobile hamburger menu
-- Active state management
-- Dark mode toggle integration
+---
 
-### Theme System
-- Context-based theme management
-- System preference detection
-- Smooth theme transitions
+## 🔧 Configuration files
 
-### Contact Form
-- Real-time form validation
-- Success/error state handling
-- Formspree integration for email delivery
+- **`next.config.js`** - `output: 'export'`, `trailingSlash: true`, `images.unoptimized: true` (required for static hosting on GitHub Pages).
+- **`tailwind.config.js`** - `darkMode: 'class'`, `accent` color, Inter / Fira Code font variable mappings.
+- **`postcss.config.js`** - Tailwind + autoprefixer.
+- **`tsconfig.json`** - Next.js defaults, `strict: false` to allow incremental adoption.
+- **`.github/workflows/main.yml`** - GitHub Actions Pages deployment with `paths-ignore` for docs/tooling.
+- **`public/.nojekyll`** - disables Jekyll on GitHub Pages so files starting with `_` are served.
 
-### Animations
-- Page load animations
-- Scroll-triggered animations
-- Hover effects and transitions
+---
 
-## 📱 Responsive Design
+## 📊 Deployment
 
-The website is fully responsive with breakpoints:
-- **Mobile**: < 640px
-- **Tablet**: 640px - 1024px
-- **Desktop**: > 1024px
+- **Status** - see the [Actions tab](https://github.com/bcastelino/bcastelino.github.io/actions)
+- **Live** - <https://bcastelino.github.io>
+- **Build badge** - ![Deploy Status](https://github.com/bcastelino/bcastelino.github.io/actions/workflows/main.yml/badge.svg)
 
-## 🔧 Configuration Files
-
-- **`next.config.js`** - Next.js configuration for static export and GitHub Pages
-- **`tailwind.config.js`** - Tailwind CSS configuration with dark mode support
-- **`tsconfig.json`** - TypeScript compiler options
-- **`postcss.config.js`** - PostCSS configuration for Tailwind processing
-- **`package.json`** - Project dependencies and npm scripts
-- **`package-lock.json`** - Locked dependency versions for consistent builds
-- **`.github/workflows/main.yml`** - GitHub Actions deployment workflow
-- **`public/.nojekyll`** - Prevents Jekyll processing on GitHub Pages
-
-## 📊 Deployment Status
-
-You can monitor the deployment status:
-- **Actions Tab**: Visit the [Actions tab](https://github.com/bcastelino/bcastelino.github.io/actions) to see build logs
-- **Live Site**: https://bcastelino.github.io
-- **Build Badge**: ![Deploy Status](https://github.com/bcastelino/bcastelino.github.io/actions/workflows/main.yml/badge.svg)
+---
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+Open source under the [MIT License](LICENSE).
 
-## 🤝 Contributing
-
-This is a personal portfolio project, but suggestions and improvements are welcome:
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+---
 
 ## 🐱‍👤 Author
 
 <table>
    <tr>
       <td>
-         <div style="flex-shrink: 0; order: 2;">
-            <img src="https://raw.githubusercontent.com/bcastelino/brian-portfolio/refs/heads/main/public/personal/profile.jpg" alt="Brian Denis Castelino" style="border-radius: 50%; width: 180px; height: 180px; object-fit: cover; border: 4px solid #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-         </div>
+         <img src="https://raw.githubusercontent.com/bcastelino/bcastelino.github.io/refs/heads/main/public/personal/profile.jpg" alt="Brian Denis Castelino" style="border-radius: 50%; width: 180px; height: 180px; object-fit: cover; border: 4px solid #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
       </td>
       <td>
-         <div align="left" style="padding: 20px;">
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width: 100%; max-width: 800px; gap: 40px; text-align: center;">
-               <div style="flex: 1; min-width: 250px; order: 1;">
-                  <h1 style="font-size: 2em; margin-bottom: 5px; color: #333;">Brian Denis Castelino</h1>
-                  <p style="font-size: 1.2em; color: #555; margin-bottom: 10px;">Data Analytics Engineer | AI Enthusiast</p>
-                  <p style="font-size: 1em; color: #777; margin-bottom: 20px;">I turn vague ideas into clean, working systems, because someone’s got to 🤖</p>
-                  <div style="display: flex; justify-content: center; gap: 30px;">
-                     <a href="https://github.com/bcastelino" target="_blank" style="text-decoration: none;">
-                     <img src="https://cdn-icons-png.flaticon.com/512/4494/4494756.png" alt="GitHub" width="30" height="30" style="width: 30px; height: 30px;">
-                     </a>
-                   &nbsp; &nbsp; &nbsp;
-                     <a href="https://linkedin.com/in/cas7elino" target="_blank" style="text-decoration: none;">
-                     <img src="https://cdn-icons-png.flaticon.com/512/4494/4494498.png" alt="LinkedIn" width="30" height="30" style="width: 30px; height: 30px;">
-                     </a>
-                   &nbsp; &nbsp; &nbsp;
-                     <a href="https://twitter.com/cas7elino" target="_blank" style="text-decoration: none;">
-                     <img src="https://cdn-icons-png.flaticon.com/512/4494/4494481.png" alt="Twitter" width="30" height="30" style="width: 30px; height: 30px;">
-                     </a>
-                   &nbsp; &nbsp; &nbsp;
-                     <a href="https://instagram.com/cas7elino" target="_blank" style="text-decoration: none;">
-                     <img src="https://cdn-icons-png.flaticon.com/512/4494/4494489.png" alt="Instagram" width="30" height="30" style="width: 30px; height: 30px;">
-                     </a>
-                   &nbsp; &nbsp; &nbsp;
-                     <a href="https://brianc.framer.website/" target="_blank" style="text-decoration: none;">
-                     <img src="https://cdn-icons-png.flaticon.com/512/4494/4494636.png" alt="Website" width="30" height="30" style="width: 30px; height: 30px;">
-                     </a>
-                  </div>
-               </div>
+         <h1>Brian Denis Castelino</h1>
+         <p><strong>AI Data Engineer · Data Analytics · GenAI</strong></p>
+         <p>I turn vague ideas into clean, working systems - because someone's got to 🤖</p>
+         <p>
+            <a href="https://github.com/bcastelino" target="_blank">GitHub</a> ·
+            <a href="https://linkedin.com/in/cas7elino" target="_blank">LinkedIn</a> ·
+            <a href="https://twitter.com/cas7elino" target="_blank">Twitter / X</a> ·
+            <a href="mailto:briancastelino07@gmail.com">Email</a>
+         </p>
       </td>
-      </div>
-      </div>
    </tr>
 </table>
 
 ---
 
----
-
-Built with ❤️ using Next.js, TypeScript, and Tailwind CSS
+Built with ❤️ using Next.js, TypeScript, Tailwind CSS, Framer Motion, and GSAP.
