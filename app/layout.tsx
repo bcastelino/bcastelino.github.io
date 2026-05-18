@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Brian Castelino — Portfolio",
   description:
     "Data Analyst, AI Enthusiast and Problem Solver — portfolio of Brian Denis Castelino.",
+  icons: {
+    icon: "/personal/fevicon.png",
+  },
 };
 
 export const viewport: Viewport = {
