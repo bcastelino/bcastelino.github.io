@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import BlurText from "./BlurText";
 import { FlowSection } from "./FlowArt";
+import BadgeMarquee from "./BadgeMarquee";
 import { personal } from "../lib/data";
 
 const ACCENT = "var(--accent)";
@@ -62,6 +63,11 @@ export default function Hero() {
       id="home"
       innerClassName="bg-[hsl(var(--bg))]"
     >
+      {/* Certification badge marquee */}
+      <div className="absolute top-20 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 w-full z-20 pointer-events-auto">
+        <BadgeMarquee />
+      </div>
+
       {/* Centered name + profile */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4">
         <div className="relative text-center">
