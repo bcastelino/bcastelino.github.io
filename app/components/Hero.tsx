@@ -11,7 +11,7 @@ const ACCENT = "var(--accent)";
 // Fluid sizing: scales with viewport width so "CASTELINO" never overflows
 // on small phones (~320px) and still feels huge on large desktops.
 const NAME_SIZE_CLASSES =
-  "font-bold text-[clamp(3rem,13.5vw,12rem)] leading-[0.9] tracking-tighter uppercase justify-center whitespace-nowrap";
+  "display-xxl font-bold text-[clamp(3rem,13.5vw,12rem)] uppercase justify-center whitespace-nowrap";
 
 export default function Hero() {
   const parallaxRef = useRef<HTMLDivElement>(null);

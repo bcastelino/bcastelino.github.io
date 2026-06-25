@@ -9,6 +9,29 @@
   --accent-fg: #ffffff;
   --bg: 0 0% 98%;
   --fg: 0 0% 10%;
+
+  /* Framer DESIGN.md — radius scale (granular, pill-forward). */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 15px;
+  --r-xl: 20px;
+  --r-xxl: 30px;
+  --r-pill: 100px;
+
+  /* Framer DESIGN.md — non-standard 5/10/15/20/30 spacing rhythm. */
+  --s-xxs: 4px;
+  --s-xs: 8px;
+  --s-sm: 12px;
+  --s-md: 15px;
+  --s-lg: 20px;
+  --s-xl: 30px;
+  --s-xxl: 40px;
+  --s-section: 96px;
+
+  /* Level-2 floating-card edge (light top hairline + soft drop). */
+  --edge-hairline: rgba(0, 0, 0, 0.08);
+  --edge-drop: rgba(0, 0, 0, 0.12);
 }
 
 .dark {
@@ -17,6 +40,56 @@
   --accent-fg: #0a0a0a;
   --bg: 0 0% 0%;
   --fg: 0 0% 100%;
+
+  /* On dark canvas the level-2 edge uses a translucent white hairline. */
+  --edge-hairline: rgba(255, 255, 255, 0.10);
+  --edge-drop: rgba(0, 0, 0, 0.25);
+}
+
+/*
+ * Inter OpenType character variants — the Framer body voice (DESIGN.md).
+ * Single-storey "a", straight-leg "l", alternate "g"/"i"/"0", stylistic
+ * sets and discretionary ligatures. Hierarchy is carried by size + tracking,
+ * so body type runs at a subtle negative track.
+ */
+body {
+  font-feature-settings: "cv01", "cv05", "cv09", "cv11", "ss03", "ss07", "dlig";
+  letter-spacing: -0.011em;
+}
+
+/*
+ * Poster-grade display typography (DESIGN.md): letter-spacing scales hard
+ * with size, line-heights stay tight. Weight stays in a narrow band — size
+ * and tracking carry the hierarchy, not 700/900 ramps.
+ */
+.display-xxl {
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+}
+
+.display-xl {
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.display-lg {
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.display-md {
+  line-height: 1.13;
+  letter-spacing: -0.03em;
+}
+
+/*
+ * Level-2 elevation — translucent light top edge + soft drop shadow.
+ * The Framer "floating card" signature, palette-neutral.
+ */
+.elev-2 {
+  box-shadow:
+    inset 0 0.5px 0 0 var(--edge-hairline),
+    0 10px 30px -8px var(--edge-drop);
 }
 
 html {

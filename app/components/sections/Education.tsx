@@ -18,13 +18,13 @@ export default function Education() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-            className="rounded-xl p-6 border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-colors"
+            className="elev-2 rounded-[20px] p-6 border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-colors"
           >
             <div className="text-xs font-mono uppercase tracking-widest text-neutral-500 mb-2">
               {edu.period}
             </div>
             <h3
-              className="text-lg sm:text-xl font-semibold text-neutral-900 dark:text-white"
+              className="display-md text-lg sm:text-xl font-semibold text-neutral-900 dark:text-white"
               style={{ fontFamily: "'Fira Code', ui-monospace, monospace" }}
             >
               {edu.degree}

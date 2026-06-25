@@ -19,7 +19,7 @@ export default function Contact() {
   }, []);
 
   const inputClass =
-    "w-full px-4 py-3 bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-md text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:border-[color:var(--accent)] transition-colors";
+    "w-full px-4 py-3 bg-neutral-100/70 dark:bg-neutral-900/70 border border-neutral-300 dark:border-neutral-700 rounded-[10px] text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:border-[color:var(--accent)] focus:ring-2 focus:ring-[color:var(--accent)]/30 transition-colors";
 
   return (
     <Section id="contact" eyebrow="06 / Contact" title="Let's talk.">

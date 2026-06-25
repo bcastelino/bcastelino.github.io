@@ -49,15 +49,15 @@ export default function About() {
           {skillGroups.map((group) => (
             <div
               key={group.title}
-              className="rounded-lg p-5 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-colors hover:border-[color:var(--accent)]"
+              className="rounded-[15px] p-5 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-colors hover:border-[color:var(--accent)]"
               style={{
                 border: "1px solid color-mix(in srgb, var(--accent) 28%, transparent)",
                 boxShadow:
-                  "0 0 0 1px color-mix(in srgb, var(--accent) 10%, transparent) inset",
+                  "0 0 0 1px color-mix(in srgb, var(--accent) 10%, transparent) inset, inset 0 0.5px 0 0 var(--edge-hairline), 0 10px 30px -8px var(--edge-drop)",
               }}
             >
               <h4
-                className="text-base font-semibold mb-3 text-neutral-900 dark:text-white"
+                className="display-md text-base font-semibold mb-3 text-neutral-900 dark:text-white"
                 style={{ fontFamily: "'Fira Code', ui-monospace, monospace" }}
               >
                 {group.title}

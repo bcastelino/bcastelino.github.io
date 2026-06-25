@@ -45,7 +45,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-              className="group relative rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1"
+              className="elev-2 group relative rounded-[20px] overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1"
             >
               <a
                 href={linkHref || "#"}
@@ -59,7 +59,7 @@ export default function Projects() {
               </a>
               <div className="p-6">
                 <h3
-                  className="text-xl font-semibold mb-2 text-neutral-900 dark:text-white transition-colors"
+                  className="display-md text-xl font-semibold mb-2 text-neutral-900 dark:text-white transition-colors"
                   style={{ fontFamily: "'Fira Code', ui-monospace, monospace" }}
                 >
                   {project.title}

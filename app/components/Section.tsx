@@ -42,7 +42,7 @@ export default function Section({
             {eyebrow}
           </div>
           <h2
-            className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-neutral-900 dark:text-white"
+            className="display-lg text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-900 dark:text-white"
             style={{ fontFamily: "'Fira Code', ui-monospace, monospace" }}
           >
             {title}
