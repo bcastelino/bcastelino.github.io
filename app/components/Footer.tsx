@@ -17,7 +17,7 @@ export default function Footer() {
           <a
             href={`mailto:${personal.email}`}
             aria-label="Email"
-            className="text-neutral-500 hover:text-[color:var(--accent)] transition-colors"
+            className="inline-flex items-center justify-center p-2 -m-2 text-neutral-500 hover:text-[color:var(--accent)] transition-colors"
           >
             <Mail className="w-5 h-5" />
           </a>
@@ -26,7 +26,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="text-neutral-500 hover:text-[color:var(--accent)] transition-colors"
+            className="inline-flex items-center justify-center p-2 -m-2 text-neutral-500 hover:text-[color:var(--accent)] transition-colors"
           >
             <Linkedin className="w-5 h-5" />
           </a>
@@ -35,7 +35,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="text-neutral-500 hover:text-[color:var(--accent)] transition-colors"
+            className="inline-flex items-center justify-center p-2 -m-2 text-neutral-500 hover:text-[color:var(--accent)] transition-colors"
           >
             <Github className="w-5 h-5" />
           </a>
@@ -44,7 +44,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="X / Twitter"
-            className="text-neutral-500 hover:text-[color:var(--accent)] transition-colors"
+            className="inline-flex items-center justify-center p-2 -m-2 text-neutral-500 hover:text-[color:var(--accent)] transition-colors"
           >
             <Twitter className="w-5 h-5" />
           </a>
