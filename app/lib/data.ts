@@ -229,6 +229,27 @@ export type Certification = {
 
 export const certifications: Certification[] = [
   {
+    name: "SnowPro Advanced: Data Engineer",
+    issuer: "Snowflake",
+    date: "2026",
+    badge: "/badges/dea_c02_ade_badge.png",
+    pdf: "/certificates/SnowPro Advanced Data Engineer Certification.pdf",
+  },
+  {
+    name: "Databricks Certified Data Engineer Professional",
+    issuer: "Databricks",
+    date: "2026",
+    badge: "/badges/db_dep.png",
+    pdf: "/certificates/Databricks Certified Data Engineer Professional Certificate.pdf",
+  },
+  {
+    name: "Associate Cloud Engineer",
+    issuer: "Google Cloud",
+    date: "2025",
+    badge: "/badges/gcp_badge.png",
+    pdf: "/certificates/Associate Cloud Engineer.pdf",
+  },
+  {
     name: "Microsoft Certified: Fabric Data Engineer Associate",
     issuer: "Microsoft",
     date: "2026",
@@ -243,27 +264,6 @@ export const certifications: Certification[] = [
     pdf: "/certificates/Databricks Certified Generative AI Engineer Associate.pdf",
   },
   {
-    name: "Databricks Certified Data Engineer Professional",
-    issuer: "Databricks",
-    date: "2026",
-    badge: "/badges/db_dep.png",
-    pdf: "/certificates/Databricks Certified Data Engineer Professional Certificate.pdf",
-  },
-  {
-    name: "Databricks Certified Data Engineer Associate",
-    issuer: "Databricks",
-    date: "2025",
-    badge: "/badges/db_dea.png",
-    pdf: "/certificates/Databricks Certified Data Engineer Associate.pdf",
-  },
-  {
-    name: "SnowPro Advanced: Data Engineer",
-    issuer: "Snowflake",
-    date: "2026",
-    badge: "/badges/dea_c02_ade_badge.png",
-    pdf: "/certificates/SnowPro Advanced Data Engineer Certification.pdf",
-  },
-  {
     name: "SnowPro Core",
     issuer: "Snowflake",
     date: "2026",
@@ -271,10 +271,10 @@ export const certifications: Certification[] = [
     pdf: "/certificates/SnowPro Core Certification.pdf",
   },
   {
-    name: "Associate Cloud Engineer",
-    issuer: "Google Cloud",
+    name: "Databricks Certified Data Engineer Associate",
+    issuer: "Databricks",
     date: "2025",
-    badge: "/badges/gcp_badge.png",
-    pdf: "/certificates/Associate Cloud Engineer.pdf",
+    badge: "/badges/db_dea.png",
+    pdf: "/certificates/Databricks Certified Data Engineer Associate.pdf",
   },
 ];
