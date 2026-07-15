@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { isSectionHash, hashToId, goToSection } from "../lib/scroll";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -135,12 +136,32 @@ const FlowArt: React.FC<FlowArtProps> = ({
 
       ScrollTrigger.refresh();
 
+      // Deep-link: once the pins are laid out, jump to the section named in the
+      // URL hash (e.g. #contact). scrollToSection converges on the section's
+      // real on-screen position, so it lands correctly despite the pinning;
+      // deepLinkTo re-asserts for a beat to survive GSAP's async refreshes and
+      // cancels if the user scrolls.
+      let cancelDeepLink: (() => void) | undefined;
+      if (typeof window !== "undefined" && isSectionHash(window.location.hash)) {
+        cancelDeepLink = goToSection(hashToId(window.location.hash));
+      }
+
       return () => {
+        cancelDeepLink?.();
         triggers.forEach((t) => t.kill());
       };
     },
     { scope: containerRef, dependencies: [React.Children.count(children), reducedMotion] }
   );
+
+  // Reduced-motion / small-screen path: GSAP pinning is disabled, so the
+  // useGSAP block above returns early. Still honour a deep-link hash here.
+  useEffect(() => {
+    if (!reducedMotion || typeof window === "undefined") return;
+    if (!isSectionHash(window.location.hash)) return;
+    const cancel = goToSection(hashToId(window.location.hash));
+    return cancel;
+  }, [reducedMotion]);
 
   return (
     <main

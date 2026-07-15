@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navItems, personal } from "../lib/data";
 import { ThemeToggle } from "./ThemeToggle";
+import { goToSection, setHash } from "../lib/scroll";
 
 const ACCENT = "var(--accent)";
 
@@ -44,7 +45,13 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 py-3 sm:py-6">
-      <nav className="flex items-center justify-between max-w-screen-2xl mx-auto">
+      {/* Legibility scrim: content scrolls under the transparent header, so a
+          soft top-down fade keeps the menu, signature and toggle readable. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[170%] bg-gradient-to-b from-[hsl(var(--bg))] from-40% via-[hsl(var(--bg)/0.85)] via-75% to-[hsl(var(--bg)/0)]"
+      />
+      <nav className="relative flex items-center justify-between max-w-screen-2xl mx-auto">
         {/* Menu button + dropdown */}
         <div className="relative">
           <button
@@ -79,10 +86,12 @@ export default function Header() {
                     className="menu-link block text-lg md:text-xl font-bold tracking-tight py-1.5 px-2 transition-colors duration-200 text-neutral-900 dark:text-white"
                     style={idx === 0 ? { color: ACCENT } : undefined}
                     onClick={(e) => {
-                      // HOME should always force scroll to the very top,
-                      // even if we're already at #home.
+                      e.preventDefault();
+                      // HOME should always force scroll to the very top, even
+                      // if we're already at #home. Other items jump accurately
+                      // to their section (native anchor scroll is off on
+                      // desktop because of the GSAP pin layout).
                       if (item.href === "#home") {
-                        e.preventDefault();
                         if (typeof window !== "undefined") {
                           // Only replaceState when Next.js's App Router state
                           // is present; otherwise Next's popstate handler will
@@ -96,6 +105,9 @@ export default function Header() {
                           }
                           window.scrollTo({ top: 0, behavior: "smooth" });
                         }
+                      } else {
+                        setHash(item.href);
+                        goToSection(item.href.replace(/^#/, ""));
                       }
                       setIsMenuOpen(false);
                     }}

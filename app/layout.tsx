@@ -30,19 +30,26 @@ const themeInitScript = `
   } catch (e) {
     document.documentElement.classList.add('dark');
   }
-  // Always land at the Hero on refresh: opt out of the browser's
-  // automatic scroll restoration and clear any leftover hash.
+  // Opt out of the browser's automatic scroll restoration. When the URL has a
+  // valid section hash (e.g. #contact) we KEEP it and let the client-side
+  // deep-link handler jump there once the layout/ScrollTrigger has settled.
+  // Otherwise we preserve the original behaviour: strip any stray hash and
+  // always land at the Hero on refresh.
   try {
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-    if (location.hash && location.hash !== '#home' && history.state) {
-      // Only replaceState when Next.js's App Router state is already present;
-      // otherwise we'd persist a null history.state and Next's popstate handler
-      // would later crash reading __PRIVATE_NEXTJS_INTERNALS_TREE.
-      history.replaceState(history.state, '', location.pathname + location.search);
+    var sectionHash = /^#(about|projects|experience|education|certifications|contact)$/;
+    var hasSectionHash = location.hash && sectionHash.test(location.hash);
+    if (!hasSectionHash) {
+      if (location.hash && location.hash !== '#home' && history.state) {
+        // Only replaceState when Next.js's App Router state is already present;
+        // otherwise we'd persist a null history.state and Next's popstate handler
+        // would later crash reading __PRIVATE_NEXTJS_INTERNALS_TREE.
+        history.replaceState(history.state, '', location.pathname + location.search);
+      }
+      window.addEventListener('load', function () { window.scrollTo(0, 0); });
     }
-    window.addEventListener('load', function () { window.scrollTo(0, 0); });
   } catch (e) {}
 })();
 `;

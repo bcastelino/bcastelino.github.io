@@ -6,6 +6,7 @@ import BlurText from "./BlurText";
 import { FlowSection } from "./FlowArt";
 import BadgeMarquee from "./BadgeMarquee";
 import { personal } from "../lib/data";
+import { goToSection, setHash } from "../lib/scroll";
 
 const ACCENT = "var(--accent)";
 // Fluid sizing: scales with viewport width so "CASTELINO" never overflows
@@ -127,6 +128,11 @@ export default function Hero() {
       {/* Scroll indicator */}
       <a
         href="#about"
+        onClick={(e) => {
+          e.preventDefault();
+          setHash("#about");
+          goToSection("about");
+        }}
         className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 transition-colors duration-300 animate-bounce-slow"
         aria-label="Scroll to about"
       >

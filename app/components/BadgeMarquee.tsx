@@ -8,6 +8,7 @@ import {
   TooltipContent,
 } from "./ui/interfaces-tooltip";
 import { certifications } from "../lib/data";
+import { goToSection, setHash } from "../lib/scroll";
 
 /**
  * Infinite, hover-slowing marquee of certification badges for the Hero.
@@ -39,6 +40,11 @@ export default function BadgeMarquee() {
                 <TooltipTrigger asChild>
                   <a
                     href="#certifications"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setHash("#certifications");
+                      goToSection("certifications");
+                    }}
                     aria-label={`View ${cert.name} in certifications`}
                     className="flex items-center"
                   >
