@@ -30,6 +30,7 @@ yarn-error.log*
 pnpm-debug.log*
 .npm/
 .eslintcache
+.playwright-cli
 
 # ---------- Editor / OS ----------
 .vscode/
