@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, FileText } from "lucide-react";
 import Section from "../Section";
+import HorizontalCarousel from "../ui/HorizontalCarousel";
 import { certifications } from "../../lib/data";
 
 const ACCENT = "var(--accent)";
@@ -15,7 +16,7 @@ export default function Certifications() {
       eyebrow="05 / Certifications"
       title="Certifications I've earned."
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+      <HorizontalCarousel ariaLabel="Certifications" gap={24}>
         {certifications.map((cert, idx) => {
           const href = cert.pdf
             ? encodeURI(cert.pdf)
@@ -34,7 +35,7 @@ export default function Certifications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: idx * 0.06, ease: "easeOut" }}
-              className="elev-2 group relative flex flex-col rounded-[20px] overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--accent)]"
+              className="elev-2 group relative flex w-[280px] sm:w-[300px] lg:w-[320px] flex-shrink-0 flex-col rounded-[20px] overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--accent)]"
             >
               <div className="relative flex items-center justify-center h-44 bg-gradient-to-b from-neutral-100/60 to-transparent dark:from-neutral-900/60 dark:to-transparent p-6">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -69,7 +70,7 @@ export default function Certifications() {
             </motion.a>
           );
         })}
-      </div>
+      </HorizontalCarousel>
     </Section>
   );
 }

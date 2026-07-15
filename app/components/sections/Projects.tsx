@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import Section from "../Section";
+import HorizontalCarousel from "../ui/HorizontalCarousel";
 import { projects, githubRepoUrl, githubSocialImage, type Project } from "../../lib/data";
 
 const FALLBACK_IMAGE = "/projects/project-placeholder.png";
@@ -34,7 +35,7 @@ const ACCENT = "var(--accent)";
 export default function Projects() {
   return (
     <Section id="projects" eyebrow="02 / Projects" title="Selected work.">
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+      <HorizontalCarousel ariaLabel="Selected projects" gap={24}>
         {projects.map((project, idx) => {
           const repoUrl = project.repo ? githubRepoUrl(project.repo) : undefined;
           const linkHref = repoUrl || project.demo;
@@ -45,7 +46,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-              className="elev-2 group relative rounded-[20px] overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1"
+              className="elev-2 group relative flex w-[300px] sm:w-[340px] lg:w-[380px] flex-shrink-0 flex-col rounded-[20px] overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1"
             >
               <a
                 href={linkHref || "#"}
@@ -57,7 +58,7 @@ export default function Projects() {
                 <ProjectPreview project={project} />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               </a>
-              <div className="p-6">
+              <div className="p-6 flex flex-1 flex-col">
                 <h3
                   className="display-md text-xl font-semibold mb-2 text-neutral-900 dark:text-white transition-colors"
                   style={{ fontFamily: "'Fira Code', ui-monospace, monospace" }}
@@ -77,7 +78,7 @@ export default function Projects() {
                     </span>
                   ))}
                 </div>
-                <div className="flex gap-4">
+                <div className="mt-auto flex gap-4">
                   {repoUrl && (
                     <a
                       href={repoUrl}
@@ -107,7 +108,7 @@ export default function Projects() {
             </motion.article>
           );
         })}
-      </div>
+      </HorizontalCarousel>
     </Section>
   );
 }
