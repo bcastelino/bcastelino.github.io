@@ -11,6 +11,16 @@
 
 ---
 
+## ✨ Highlights
+
+- **Story-scroll sections** — GSAP ScrollTrigger pin + rotate-in choreography (skipped on touch devices and `prefers-reduced-motion`)
+- **Interactive WebGL footer** — custom GLSL dot-matrix with a mouse-reactive reveal, synced to the light/dark theme
+- **Motion system** — Framer Motion reveals with premium MD3 easing curves and press feedback on interactive elements
+- **Accessibility-first** — global reduced-motion support, visible focus rings on every interactive element, and a single accessible `<h1>`
+- **SEO & AI-ready** — JSON-LD, canonical URLs, `robots.txt`, `sitemap.xml`, and an `llms.txt` knowledge file for AI assistants
+
+---
+
 ## 🛠️ Tech Stack
 
 | Concern              | Choice                                                  |
@@ -20,6 +30,7 @@
 | Styling              | [Tailwind CSS](https://tailwindcss.com/) + CSS vars     |
 | Reveal animations    | [Framer Motion](https://www.framer.com/motion/)         |
 | Scroll choreography  | [GSAP](https://gsap.com/) + ScrollTrigger + `@gsap/react` |
+| WebGL shader         | [three](https://threejs.org/) + [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber) |
 | Icons                | [lucide-react](https://lucide.dev/)                     |
 | Contact form         | [@formspree/react](https://formspree.io/)               |
 | Fonts                | `next/font/google` - Inter + Fira Code                  |
@@ -50,7 +61,7 @@ npm run dev        # http://localhost:3000
 
 ## 📄 License
 
-Open source under the [MIT License](LICENSE).
+Open source under the [MIT License](LICENSE.txt).
 
 ---
 
@@ -77,4 +88,4 @@ Open source under the [MIT License](LICENSE).
 
 ---
 
-Built with ❤️ using Next.js, TypeScript, Tailwind CSS, Framer Motion, and GSAP.
+Built with ❤️ using Next.js, TypeScript, Tailwind CSS, Framer Motion, GSAP, and three.js.
