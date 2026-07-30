@@ -8,6 +8,7 @@ export const navItems: NavItem[] = [
   { label: "EDUCATION", href: "#education" },
   { label: "CERTIFICATIONS", href: "#certifications" },
   { label: "CONTACT", href: "#contact" },
+  { label: "BLOGS", href: "/blogs/" },
 ];
 
 export const personal = {

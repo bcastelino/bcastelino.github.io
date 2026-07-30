@@ -12,6 +12,13 @@ export default function Footer() {
       <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="text-sm text-neutral-500 font-mono">
           © {new Date().getFullYear()} {personal.fullName}. Built with Next.js + Tailwind.
+          <span className="mx-2 text-neutral-300 dark:text-neutral-700">·</span>
+          <a
+            href="/blogs/"
+            className="underline-offset-4 hover:underline hover:text-[color:var(--accent)] transition-colors"
+          >
+            The Brian Journal
+          </a>
         </div>
         <div className="flex items-center gap-4">
           <a
