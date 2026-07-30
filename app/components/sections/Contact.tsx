@@ -22,7 +22,7 @@ export default function Contact() {
     "w-full px-4 py-3 bg-neutral-100/70 dark:bg-neutral-900/70 border border-neutral-300 dark:border-neutral-700 rounded-[10px] text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:border-[color:var(--accent)] focus:ring-2 focus:ring-[color:var(--accent)]/30 transition-colors";
 
   return (
-    <Section id="contact" eyebrow="06 / Contact" title="Let's talk.">
+    <Section id="contact" eyebrow="06 / Contact" title="Let’s talk.">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
         {/* Info */}
         <motion.div
@@ -32,7 +32,7 @@ export default function Contact() {
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed mb-8">
-            Have a question, a project, or just want to say hi? I'm always open to
+            Have a question, a project, or just want to say hi? I’m always open to
             interesting conversations and new opportunities.
           </p>
 
@@ -58,7 +58,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="p-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors"
+              className="focus-ring p-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-[color,border-color,transform] active:scale-90"
             >
               <Linkedin className="w-5 h-5" />
             </a>
@@ -67,7 +67,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="p-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors"
+              className="focus-ring p-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors"
             >
               <Github className="w-5 h-5" />
             </a>
@@ -76,7 +76,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="X / Twitter"
-              className="p-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors"
+              className="focus-ring p-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-[color:var(--accent)] hover:border-[color:var(--accent)] transition-colors"
             >
               <Twitter className="w-5 h-5" />
             </a>
@@ -107,21 +107,21 @@ export default function Contact() {
             <label htmlFor="name" className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 font-mono">
               Name
             </label>
-            <input id="name" type="text" name="name" required placeholder="Your name" className={inputClass} />
+            <input id="name" type="text" name="name" required autoComplete="name" placeholder="Your name…" className={inputClass} />
             <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-sm mt-1" />
           </div>
           <div>
             <label htmlFor="email" className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 font-mono">
               Email
             </label>
-            <input id="email" type="email" name="email" required placeholder="you@example.com" className={inputClass} />
+            <input id="email" type="email" name="email" required autoComplete="email" inputMode="email" spellCheck={false} placeholder="you@example.com" className={inputClass} />
             <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-sm mt-1" />
           </div>
           <div>
             <label htmlFor="subject" className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 font-mono">
               Subject
             </label>
-            <input id="subject" type="text" name="subject" placeholder="What's this about?" className={inputClass} />
+            <input id="subject" type="text" name="subject" autoComplete="off" placeholder="What’s this about?" className={inputClass} />
           </div>
           <div>
             <label htmlFor="message" className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 font-mono">

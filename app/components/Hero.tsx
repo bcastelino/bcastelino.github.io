@@ -72,8 +72,12 @@ export default function Hero() {
       {/* Centered name + profile */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4">
         <div className="relative text-center">
+          <h1 className="sr-only">
+            {personal.fullName} — AI Data Engineer &amp; Data Analytics
+          </h1>
           <div
             ref={parallaxRef}
+            aria-hidden="true"
             className="will-change-transform transition-transform duration-200 ease-out"
             style={{ transform: "translate3d(0, 0, 0)" }}
           >
@@ -104,6 +108,8 @@ export default function Hero() {
               <img
                 src={personal.profileImage}
                 alt={`${personal.fullName} profile`}
+                width={280}
+                height={460}
                 className="w-full h-full object-cover"
               />
             </div>

@@ -20,7 +20,7 @@ export default function Education() {
             transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
             className="elev-2 rounded-[20px] p-6 border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-colors"
           >
-            <div className="text-xs font-mono uppercase tracking-widest text-neutral-500 mb-2">
+            <div className="text-xs font-mono uppercase tracking-widest text-neutral-500 mb-2 tabular-nums">
               {edu.period}
             </div>
             <h3
@@ -43,6 +43,7 @@ export default function Education() {
                 {edu.description.map((course) => (
                   <span
                     key={course}
+                    translate="no"
                     className="text-xs px-2.5 py-1 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300"
                   >
                     {course}

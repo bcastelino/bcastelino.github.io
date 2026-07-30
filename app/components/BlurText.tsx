@@ -22,9 +22,20 @@ const BlurText: React.FC<BlurTextProps> = ({
   as = "p",
 }) => {
   const [inView, setInView] = useState(false);
+  const [reduced, setReduced] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      setReduced(true);
+      setInView(true);
+      return;
+    }
+
     const node = ref.current;
     if (!node) return;
     const observer = new IntersectionObserver(
@@ -62,7 +73,9 @@ const BlurText: React.FC<BlurTextProps> = ({
           transform: inView
             ? "translateY(0)"
             : `translateY(${direction === "top" ? "-20px" : "20px"})`,
-          transition: `all 0.6s ease-out ${i * delay}ms`,
+          transition: reduced
+            ? "none"
+            : `filter 0.6s cubic-bezier(0.05,0.7,0.1,1) ${i * delay}ms, opacity 0.6s cubic-bezier(0.05,0.7,0.1,1) ${i * delay}ms, transform 0.6s cubic-bezier(0.05,0.7,0.1,1) ${i * delay}ms`,
           whiteSpace: "pre",
         }}
       >

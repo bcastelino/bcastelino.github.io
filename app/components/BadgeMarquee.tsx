@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 import { BlurredInfiniteSlider } from "./ui/infinite-slider";
 import {
   Tooltip,
@@ -16,6 +17,42 @@ import { goToSection, setHash } from "../lib/scroll";
  * sync with the Certifications section automatically.
  */
 export default function BadgeMarquee() {
+  const prefersReduced = useReducedMotion();
+  // Only swap to the static row AFTER mount so the server-rendered HTML and
+  // the first client render match (avoids a hydration mismatch — the slider
+  // is the SSR default).
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const useStatic = mounted && prefersReduced;
+
+  const badges = certifications.map((cert) => (
+    <Tooltip key={cert.name}>
+      <TooltipTrigger asChild>
+        <a
+          href="#certifications"
+          onClick={(e) => {
+            e.preventDefault();
+            setHash("#certifications");
+            goToSection("certifications");
+          }}
+          aria-label={`View ${cert.name} in certifications`}
+          className="focus-ring flex items-center active:scale-90 transition-transform"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="h-12 w-fit object-contain transition-transform duration-300 hover:scale-110 sm:h-14"
+            src={cert.badge}
+            alt={`${cert.name} badge`}
+            width={56}
+            height={56}
+            loading="lazy"
+          />
+        </a>
+      </TooltipTrigger>
+      <TooltipContent side="bottom">{cert.name}</TooltipContent>
+    </Tooltip>
+  ));
+
   return (
     <div className="w-full">
       <div className="mx-auto flex max-w-5xl flex-col items-center px-6 md:flex-row">
@@ -26,41 +63,23 @@ export default function BadgeMarquee() {
           </p>
         </div>
 
-        {/* Sliding badges */}
+        {/* Sliding badges (static wrapped row when reduced motion is preferred) */}
         <div className="w-full min-w-0 py-4 md:flex-1 md:pl-6">
-          <BlurredInfiniteSlider
-            speedOnHover={20}
-            speed={40}
-            gap={64}
-            fadeWidth={48}
-            className="py-2"
-          >
-            {certifications.map((cert) => (
-              <Tooltip key={cert.name}>
-                <TooltipTrigger asChild>
-                  <a
-                    href="#certifications"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setHash("#certifications");
-                      goToSection("certifications");
-                    }}
-                    aria-label={`View ${cert.name} in certifications`}
-                    className="flex items-center"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      className="h-12 w-fit object-contain transition-transform duration-300 hover:scale-110 sm:h-14"
-                      src={cert.badge}
-                      alt={`${cert.name} badge`}
-                      loading="lazy"
-                    />
-                  </a>
-                </TooltipTrigger>
-                <TooltipContent side="bottom">{cert.name}</TooltipContent>
-              </Tooltip>
-            ))}
-          </BlurredInfiniteSlider>
+          {useStatic ? (
+            <div className="flex flex-wrap items-center justify-center gap-8 py-2">
+              {badges}
+            </div>
+          ) : (
+            <BlurredInfiniteSlider
+              speedOnHover={20}
+              speed={40}
+              gap={64}
+              fadeWidth={48}
+              className="py-2"
+            >
+              {badges}
+            </BlurredInfiniteSlider>
+          )}
         </div>
       </div>
     </div>

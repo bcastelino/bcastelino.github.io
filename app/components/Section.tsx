@@ -36,13 +36,13 @@ export default function Section({
           className="mb-12 sm:mb-16"
         >
           <div
-            className="text-xs sm:text-sm uppercase tracking-[0.3em] mb-3 font-mono"
+            className="text-xs sm:text-sm uppercase tracking-[0.3em] mb-3 font-mono tabular-nums"
             style={{ color: ACCENT }}
           >
             {eyebrow}
           </div>
           <h2
-            className="display-lg text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-900 dark:text-white"
+            className="display-lg text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-900 dark:text-white text-balance"
             style={{ fontFamily: "'Fira Code', ui-monospace, monospace" }}
           >
             {title}

@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  /* Match native form controls / scrollbars to the theme. */
+  color-scheme: light;
   /* Dark lime for light mode — readable on white. */
   --accent: #5C7C12;
   /* Accent variants for buttons/badges where we still need a fill that matches the dark-mode look. */
@@ -35,6 +37,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   /* Bright lime for dark mode — pops on black. */
   --accent: #C3E41D;
   --accent-fg: #0a0a0a;
@@ -108,6 +111,20 @@ body {
   color: hsl(var(--fg));
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.3s ease, color 0.3s ease;
+  /* Remove the 300ms double-tap zoom delay; kill the grey tap flash. */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*
+ * Shared visible focus ring (Web Interface Guidelines): applied to
+ * interactive elements that otherwise only have hover feedback. Uses
+ * :focus-visible so it never shows on plain mouse clicks.
+ */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: inherit;
 }
 
 /* Prevent media/SVG from forcing horizontal scroll on small screens. */

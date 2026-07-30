@@ -30,7 +30,7 @@ export default function About() {
             <ul className="space-y-2 text-neutral-700 dark:text-neutral-300">
               {interests.map((item, i) => (
                 <li key={i} className="flex gap-3">
-                  <span style={{ color: ACCENT }}>▸</span>
+                  <span style={{ color: ACCENT }} aria-hidden="true">▸</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -66,6 +66,7 @@ export default function About() {
                 {group.items.map((item) => (
                   <span
                     key={item}
+                    translate="no"
                     className="text-xs px-2.5 py-1 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300"
                   >
                     {item}

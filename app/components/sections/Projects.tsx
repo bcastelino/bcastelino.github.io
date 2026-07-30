@@ -22,6 +22,8 @@ function ProjectPreview({ project }: { project: Project }) {
       src={src}
       alt={`${project.title} preview`}
       loading="lazy"
+      width={1280}
+      height={640}
       onError={() => {
         if (src !== FALLBACK_IMAGE) setSrc(FALLBACK_IMAGE);
       }}
@@ -46,13 +48,13 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-              className="elev-2 group relative flex w-[300px] sm:w-[340px] lg:w-[380px] flex-shrink-0 flex-col rounded-[20px] overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1"
+              className="elev-2 group relative flex w-[300px] sm:w-[340px] lg:w-[380px] flex-shrink-0 flex-col rounded-[20px] overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1 active:scale-[0.98]"
             >
               <a
                 href={linkHref || "#"}
                 target={linkHref ? "_blank" : undefined}
                 rel={linkHref ? "noopener noreferrer" : undefined}
-                className="relative block h-48 sm:h-52 overflow-hidden bg-neutral-100 dark:bg-neutral-900"
+                className="focus-ring relative block h-48 sm:h-52 overflow-hidden bg-neutral-100 dark:bg-neutral-900"
                 aria-label={`${project.title} preview`}
               >
                 <ProjectPreview project={project} />
@@ -72,6 +74,7 @@ export default function Projects() {
                   {project.technologies.map((t) => (
                     <span
                       key={t}
+                      translate="no"
                       className="text-[11px] px-2 py-0.5 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 font-mono"
                     >
                       {t}
@@ -84,7 +87,7 @@ export default function Projects() {
                       href={repoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm text-neutral-700 dark:text-neutral-300 hover:text-[color:var(--accent)] transition-colors"
+                      className="focus-ring inline-flex items-center gap-1 text-sm text-neutral-700 dark:text-neutral-300 hover:text-[color:var(--accent)] transition-colors"
                     >
                       <Github className="w-4 h-4" /> Code
                     </a>
@@ -94,7 +97,7 @@ export default function Projects() {
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm text-neutral-700 dark:text-neutral-300 hover:text-[color:var(--accent)] transition-colors"
+                      className="focus-ring inline-flex items-center gap-1 text-sm text-neutral-700 dark:text-neutral-300 hover:text-[color:var(--accent)] transition-colors"
                     >
                       <ArrowUpRight className="w-4 h-4" /> Demo
                     </a>

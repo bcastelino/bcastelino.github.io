@@ -9,7 +9,7 @@ const ACCENT = "var(--accent)";
 
 export default function Experience() {
   return (
-    <Section id="experience" eyebrow="03 / Experience" title="Where I've worked.">
+    <Section id="experience" eyebrow="03 / Experience" title="Where I’ve worked.">
       <ol className="relative border-l border-neutral-300 dark:border-neutral-800 ml-2 sm:ml-4 space-y-10">
         {experience.map((job, idx) => (
           <motion.li
@@ -24,7 +24,7 @@ export default function Experience() {
               className="absolute -left-[7px] top-2 w-3 h-3 rounded-full ring-4 ring-white dark:ring-black"
               style={{ backgroundColor: ACCENT }}
             />
-            <div className="text-xs font-mono uppercase tracking-widest text-neutral-500 mb-1">
+            <div className="text-xs font-mono uppercase tracking-widest text-neutral-500 mb-1 tabular-nums">
               {job.period}
             </div>
             <h3
@@ -37,7 +37,7 @@ export default function Experience() {
             <ul className="mt-3 space-y-1.5 text-neutral-700 dark:text-neutral-300">
               {job.description.map((d, i) => (
                 <li key={i} className="flex gap-2">
-                  <span style={{ color: ACCENT }} className="select-none">▸</span>
+                  <span style={{ color: ACCENT }} className="select-none" aria-hidden="true">▸</span>
                   <span>{d}</span>
                 </li>
               ))}

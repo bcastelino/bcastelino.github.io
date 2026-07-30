@@ -65,6 +65,7 @@ export default function InteractiveHoverButton(props: Props) {
     "px-6 py-3 font-semibold text-neutral-900 dark:text-white",
     "bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm",
     "transition-colors duration-300 hover:border-[color:var(--accent)]",
+    "active:scale-[0.97]",
     "disabled:opacity-60 disabled:cursor-not-allowed",
     !isIdle && "pointer-events-none",
     className

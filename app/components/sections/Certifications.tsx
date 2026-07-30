@@ -14,7 +14,7 @@ export default function Certifications() {
     <Section
       id="certifications"
       eyebrow="05 / Certifications"
-      title="Certifications I've earned."
+      title="Certifications I’ve earned."
     >
       <HorizontalCarousel ariaLabel="Certifications" gap={24}>
         {certifications.map((cert, idx) => {
@@ -35,18 +35,20 @@ export default function Certifications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: idx * 0.06, ease: "easeOut" }}
-              className="elev-2 group relative flex w-[280px] sm:w-[300px] lg:w-[320px] flex-shrink-0 flex-col rounded-[20px] overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--accent)]"
+              className="focus-ring elev-2 group relative flex w-[280px] sm:w-[300px] lg:w-[320px] flex-shrink-0 flex-col rounded-[20px] overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 backdrop-blur-sm transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-[color:var(--accent)] active:scale-[0.98]"
             >
               <div className="relative flex items-center justify-center h-44 bg-gradient-to-b from-neutral-100/60 to-transparent dark:from-neutral-900/60 dark:to-transparent p-6">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={cert.badge}
                   alt={`${cert.name} badge`}
+                  width={200}
+                  height={200}
                   className="max-h-full max-w-[60%] object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-md"
                 />
               </div>
               <div className="p-5 flex-1 flex flex-col">
-                <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mb-1">
+                <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mb-1 tabular-nums">
                   {cert.issuer} · {cert.date}
                 </div>
                 <h3

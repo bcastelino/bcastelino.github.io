@@ -149,7 +149,7 @@ export default function HorizontalCarousel({
             onClick={() => page(-1)}
             disabled={!canPrev}
             aria-label="Previous"
-            className="grid h-10 w-10 place-items-center rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 transition-all duration-200 hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] disabled:cursor-not-allowed disabled:opacity-30"
+            className="focus-ring grid h-10 w-10 place-items-center rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 transition-[color,border-color,transform] duration-150 hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] active:scale-90 disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -158,7 +158,7 @@ export default function HorizontalCarousel({
             onClick={() => page(1)}
             disabled={!canNext}
             aria-label="Next"
-            className="grid h-10 w-10 place-items-center rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 transition-all duration-200 hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] disabled:cursor-not-allowed disabled:opacity-30"
+            className="focus-ring grid h-10 w-10 place-items-center rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 transition-[color,border-color,transform] duration-150 hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] active:scale-90 disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ChevronRight className="h-5 w-5" />
           </button>

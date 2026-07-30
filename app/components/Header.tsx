@@ -57,7 +57,7 @@ export default function Header() {
           <button
             ref={buttonRef}
             type="button"
-            className="p-2 transition-colors duration-300 text-neutral-500 hover:text-black dark:hover:text-white"
+            className="focus-ring p-2 transition-colors duration-300 text-neutral-500 hover:text-black dark:hover:text-white"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             onClick={() => setIsMenuOpen((v) => !v)}
           >
@@ -76,14 +76,14 @@ export default function Header() {
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
+                transition={{ duration: 0.25, ease: [0.05, 0.7, 0.1, 1] }}
                 className="absolute top-full left-0 w-[220px] md:w-[260px] shadow-2xl mt-2 ml-2 p-4 rounded-lg bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800"
               >
                 {navItems.map((item, idx) => (
                   <a
                     key={item.label}
                     href={item.href}
-                    className="menu-link block text-lg md:text-xl font-bold tracking-tight py-1.5 px-2 transition-colors duration-200 text-neutral-900 dark:text-white"
+                    className="focus-ring menu-link block text-lg md:text-xl font-bold tracking-tight py-1.5 px-2 transition-colors duration-200 text-neutral-900 dark:text-white"
                     style={idx === 0 ? { color: ACCENT } : undefined}
                     onClick={(e) => {
                       // Non-hash links (e.g. /blogs/) navigate normally.
@@ -146,7 +146,7 @@ export default function Header() {
             }
             setIsMenuOpen(false);
           }}
-          className="signature-glow text-3xl sm:text-4xl select-none transition-all duration-300 text-neutral-900 dark:text-white hover:text-[color:var(--accent)]"
+          className="focus-ring signature-glow text-3xl sm:text-4xl select-none transition-[color,text-shadow] duration-300 text-neutral-900 dark:text-white hover:text-[color:var(--accent)]"
           style={{ fontFamily: "'Brush Script MT', 'Lucida Handwriting', cursive" }}
           aria-label="Home"
         >

@@ -32,7 +32,7 @@ export const aboutIntro = `Results-driven AI Data Engineer and Product Analytics
 
 export const interests: string[] = [
   "Building Ultimate Team squads on FC25 (PS5).",
-  "Hiking and trail walks - pretending I'm Bear Grylls for an afternoon.",
+  "Hiking and trail walks - pretending I’m Bear Grylls for an afternoon.",
   "Die-hard Real Madrid CF fan. Cristiano Ronaldo is the GOAT.",
   "Folding origami animals for peace of mind.",
   "Collecting clever life hacks and productivity tools - most of my projects are inspired by them.",
