@@ -1,0 +1,28 @@
+# Brian Denis Castelino — AI Data Engineer & Analytics
+
+> Personal portfolio of Brian Denis Castelino, an AI Data Engineer and Product Analytics professional based in Dallas, TX, USA, with 4.5+ years of experience designing scalable data platforms, deploying ML/LLM solutions, and delivering data-driven insights across enterprise environments. Core expertise: Databricks, cloud ecosystems (AWS, GCP, Azure), MLOps automation, generative AI, and self-service BI.
+
+## About
+
+- Role: AI Data Engineer (currently at WorldLink US, since Sept 2025).
+- Education: MS in Data Analytics Engineering (George Mason University); BE in Information Technology (University of Mumbai).
+- Focus areas: end-to-end data pipelines, ML forecasting on Databricks (MLflow, XGBoost, CI/CD), LLM-powered NLQ-to-BI, MLOps, and Power BI / Tableau dashboards.
+- Certifications: Databricks (Data Engineer Professional/Associate, GenAI Engineer Associate), SnowPro (Advanced Data Engineer, Core), Google Cloud (Associate Cloud Engineer), Microsoft (Fabric Data Engineer Associate).
+
+## Key pages
+
+- [Portfolio home](https://bcastelino.github.io/): About, projects, experience, education, certifications, and contact.
+- [Blog — The Brian Journal](https://bcastelino.github.io/blogs/): Articles on data engineering, AI, and analytics.
+
+## Selected projects
+
+- Power BI Dashboard Generator: LLM-powered tool turning natural-language prompts into fully built Power BI dashboards (Python, LangChain, TMDL, OpenAI). https://github.com/bcastelino/powerbi-dashboard-generator
+- OCR Text Vision Pro: OCR + LLM post-processing pipeline for high-accuracy text extraction (Python, OpenCV, Tesseract). https://github.com/bcastelino/ocr-text-vision-pro
+- LinkedIn Data Visualizer: Interactive dashboard turning exported LinkedIn data into visual insights (OpenRouter, FastAPI, React). https://github.com/bcastelino/linkedin-data-visualizer
+
+## Contact
+
+- Email: briancastelino07@gmail.com
+- LinkedIn: https://www.linkedin.com/in/cas7elino/
+- GitHub: https://github.com/bcastelino
+- X / Twitter: https://x.com/cas7elino
