@@ -44,6 +44,8 @@ jobs:
         run: npm ci
 
       - name: Build with Next.js
+        env:
+          NEXT_PUBLIC_GA_MEASUREMENT_ID: G-EJ7687VQYW
         run: npm run build
 
       - name: Setup Pages

@@ -1,0 +1,87 @@
+.banner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  width: 340px;
+  max-width: calc(100vw - 40px);
+  padding: 18px 20px;
+  background: hsl(var(--bg));
+  border: 1px solid var(--edge-hairline);
+  border-radius: var(--r-lg);
+  box-shadow:
+    inset 0 0.5px 0 0 var(--edge-hairline),
+    0 10px 30px -8px var(--edge-drop);
+  animation: slideIn 0.28s ease;
+}
+
+.text {
+  margin: 0 0 14px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: hsl(var(--fg) / 0.72);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.accept,
+.reject {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: opacity 0.16s ease, background 0.16s ease;
+}
+
+.accept {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border: 1px solid var(--accent);
+}
+
+.accept:hover {
+  opacity: 0.88;
+}
+
+.reject {
+  background: transparent;
+  color: hsl(var(--fg));
+  border: 1px solid var(--edge-hairline);
+}
+
+.reject:hover {
+  background: hsl(var(--fg) / 0.06);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 520px) {
+  .banner {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    width: auto;
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner {
+    animation: none;
+  }
+}
