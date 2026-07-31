@@ -13,11 +13,16 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "../lib/utils";
-import { personal, navItems } from "../lib/data";
+import {
+  personal,
+  navItems,
+  positioningLine,
+  availability,
+} from "../lib/data";
 import { goToSection, setHash, isSectionHash, hashToId } from "../lib/scroll";
 
 /* ------------------------------------------------------------------ *
- * Theme helper — track the `dark` class Windsurf/ThemeToggle toggles
+ * Theme helper: track the `dark` class Windsurf/ThemeToggle toggles
  * on <html>, so the WebGL dot colours stay in sync with the site.
  * ------------------------------------------------------------------ */
 function useIsDark(): boolean {
@@ -300,7 +305,7 @@ const CanvasRevealEffect = ({
     ];
   }, []);
 
-  // Stable shader source — mouse/hover come in through uniforms, so the
+  // Stable shader source: mouse/hover come in through uniforms, so the
   // ShaderMaterial is built once and never rebuilt on hover (no flicker).
   const shaderSource = useMemo(
     () => `
@@ -564,7 +569,7 @@ export default function Footer() {
         </div>
 
         <div className={cn("grid grid-cols-1 min-[1250px]:grid-cols-12 border-t border-b", HAIRLINE)}>
-          {/* Social icons — 2x2 on mobile, 4-across cluster on desktop (col-span-4) */}
+          {/* Social icons: 2x2 on mobile, 4-across cluster on desktop (col-span-4) */}
           <div className={cn("grid grid-cols-2 min-[1250px]:col-span-4 min-[1250px]:grid-cols-4 border-b min-[1250px]:border-b-0 min-[1250px]:border-r", HAIRLINE)}>
             {socialLinks.map((link, i) => (
               <AnimatedIconLink
@@ -624,8 +629,27 @@ export default function Footer() {
             })}
           </div>
 
-          <div className="px-4 py-6 min-[1250px]:py-8 min-[1250px]:col-span-4 text-xs text-neutral-500 leading-relaxed flex items-center">
-            <p>{personal.tagline}</p>
+          <div className="px-4 py-6 min-[1250px]:py-8 min-[1250px]:col-span-4 text-xs text-neutral-500 leading-relaxed flex flex-col justify-center gap-2">
+            <p className="text-neutral-600 dark:text-neutral-400">
+              {positioningLine}
+            </p>
+            <p>{personal.location}</p>
+            {availability.open && (
+              <p className="flex items-center gap-2">
+                <span
+                  aria-hidden="true"
+                  className="inline-block h-1.5 w-1.5 rounded-full"
+                  style={{ backgroundColor: "var(--accent)" }}
+                />
+                {availability.chip}
+              </p>
+            )}
+            <a
+              href={`mailto:${personal.email}`}
+              className="focus-ring mt-1 inline-flex w-fit items-center font-medium text-[color:var(--accent)] underline-offset-4 hover:underline"
+            >
+              {personal.email}
+            </a>
           </div>
         </div>
 

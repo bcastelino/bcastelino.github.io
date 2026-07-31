@@ -1,7 +1,9 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import Section from "../Section";
 import { experience } from "../../lib/data";
 
@@ -9,7 +11,7 @@ const ACCENT = "var(--accent)";
 
 export default function Experience() {
   return (
-    <Section id="experience" eyebrow="03 / Experience" title="Where I’ve worked.">
+    <Section id="experience" eyebrow="05 / Experience" title="Where I’ve worked.">
       <ol className="relative border-l border-neutral-300 dark:border-neutral-800 ml-2 sm:ml-4 space-y-10">
         {experience.map((job, idx) => (
           <motion.li
@@ -42,6 +44,15 @@ export default function Experience() {
                 </li>
               ))}
             </ul>
+            {job.caseStudySlug && (
+              <Link
+                href={`/work/${job.caseStudySlug}/`}
+                className="focus-ring mt-4 inline-flex items-center gap-1 text-sm font-medium text-[color:var(--accent)] hover:underline"
+              >
+                See how this was built
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            )}
           </motion.li>
         ))}
       </ol>

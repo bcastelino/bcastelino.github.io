@@ -13,7 +13,7 @@ function cx(...parts: Array<string | undefined | false | null>): string {
 }
 
 /* ------------------------------------------------------------------ */
-/* FlowSection — one slide in the story scroll                         */
+/* FlowSection: one slide in the story scroll                          */
 /* ------------------------------------------------------------------ */
 
 export interface FlowSectionProps {
@@ -57,7 +57,7 @@ export const FlowSection: React.FC<FlowSectionProps> = ({
 );
 
 /* ------------------------------------------------------------------ */
-/* FlowArt — orchestrates pin + rotate-in for each FlowSection        */
+/* FlowArt: orchestrates pin + rotate-in for each FlowSection         */
 /* ------------------------------------------------------------------ */
 
 export interface FlowArtProps {

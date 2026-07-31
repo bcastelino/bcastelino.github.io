@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Interactive hover button — expanding dot fill + slide-in action label.
+ * Interactive hover button: expanding dot fill + slide-in action label.
  * Optional `loadingText` / `successText` make the button stateful (idle →
  * loading → success), used for the contact form submit.
  *
@@ -27,7 +27,7 @@ type CommonProps = {
 type AsButtonProps = CommonProps &
   Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "className"> & {
     as?: "button";
-    /** External status override — when provided, the component is fully controlled. */
+    /** External status override: when provided, the component is fully controlled. */
     status?: ButtonStatus;
   };
 

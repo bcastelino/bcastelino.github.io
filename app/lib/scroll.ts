@@ -3,7 +3,7 @@
  *
  * The page uses GSAP ScrollTrigger pinning (`pinSpacing: false`) on desktop, so
  * live `getBoundingClientRect` values are corrupted by rotation transforms and
- * `position: fixed` pins — a naive `scrollIntoView()` / native hash jump lands
+ * `position: fixed` pins, so a naive `scrollIntoView()` / native hash jump lands
  * at the wrong offset. Instead, `scrollToSection` jumps to the section's
  * natural stacked offset (sum of preceding sections' intrinsic `offsetHeight`),
  * which is transform/pin-independent and therefore deterministic. The jump is
@@ -48,11 +48,13 @@ function setScroll(top: number): void {
 
 export const SECTION_IDS = [
   "home",
-  "about",
+  "work",
+  "open-source",
   "projects",
+  "writing",
   "experience",
-  "education",
-  "certifications",
+  "about",
+  "credentials",
   "contact",
 ] as const;
 
@@ -80,7 +82,7 @@ function headerOffset(): number {
 let activeNavCancel: (() => void) | null = null;
 
 /**
- * The section's natural document offset — the scroll position at which its top
+ * The section's natural document offset: the scroll position at which its top
  * would sit at the very top of the viewport if nothing were pinned.
  *
  * We sum the intrinsic `offsetHeight` of every preceding flow section rather
@@ -88,7 +90,7 @@ let activeNavCancel: (() => void) | null = null;
  * rotation transforms and pins sections with `position: fixed`
  * (`pinSpacing: false`), both of which corrupt live rects. `offsetHeight` is
  * the untransformed layout height, so this recovers the true stacked offset
- * regardless of the current pin/scroll state — making the jump deterministic.
+ * regardless of the current pin/scroll state, making the jump deterministic.
  */
 function naturalOffsetTop(target: HTMLElement): number {
   const sections = Array.from(
@@ -126,7 +128,7 @@ export function scrollToSection(id: string): void {
 }
 
 /**
- * Robustly navigate to `id` — used for both deep-links (page load) and in-page
+ * Robustly navigate to `id`. Used for both deep-links (page load) and in-page
  * nav clicks.
  *
  * A single `scrollToSection` pass can land early: section heights (and thus
@@ -184,7 +186,7 @@ export function goToSection(id: string): () => void {
 
   // Re-assert while the layout is still settling. The Hero's badge marquee (and
   // late fonts/images) can change section heights up to ~1s after load, which
-  // shifts the natural offsets scrollToSection sums — a ResizeObserver on the
+  // shifts the natural offsets scrollToSection sums; a ResizeObserver on the
   // document catches those shifts and re-lands us without fighting the user.
   if (typeof ResizeObserver !== "undefined" && document.body) {
     observer = new ResizeObserver(() => assert());
@@ -204,7 +206,7 @@ export function goToSection(id: string): () => void {
 /**
  * Update the URL hash without triggering the browser's native (inaccurate)
  * jump. Guarded so we only touch history once Next.js's App Router state is
- * present — otherwise Next's popstate handler crashes reading its internal
+ * present; otherwise Next's popstate handler crashes reading its internal
  * tree off a null state.
  */
 export function setHash(hash: string): void {
