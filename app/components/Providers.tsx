@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { MotionConfig } from "framer-motion";
 
 /**
@@ -9,5 +9,11 @@ import { MotionConfig } from "framer-motion";
  * the user's `prefers-reduced-motion` setting automatically.
  */
 export default function Providers({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    const stored = localStorage.getItem("theme");
+    const dark = stored ? stored === "dark" : true;
+    document.documentElement.classList.toggle("dark", dark);
+  }, []);
+
   return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }
