@@ -46,5 +46,8 @@ Desktop.ini
 # ---------- Vercel ----------
 .vercel
 
+# ---------- Private working documents ----------
+resume/
+
 # ---------- TypeScript ----------
 *.tsbuildinfo
