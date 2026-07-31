@@ -11,6 +11,12 @@
 
 ---
 
+<p align="center">
+  <a href="https://bcastelino.github.io/">
+    <img src="public/personal/portfolio-ui.png" alt="Portfolio UI preview" width="100%" />
+  </a>
+</p>
+
 ## ✨ Highlights
 
 - **Story-scroll sections**: GSAP ScrollTrigger pin + rotate-in choreography (skipped on touch devices and `prefers-reduced-motion`)
