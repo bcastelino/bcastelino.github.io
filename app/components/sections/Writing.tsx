@@ -34,6 +34,8 @@ export default function Writing() {
           >
             <a
               href={article.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="focus-ring group flex h-full flex-col rounded-[18px] border border-neutral-200 bg-white/40 p-6 transition-all hover:-translate-y-1 hover:border-[color:var(--accent)] dark:border-neutral-800 dark:bg-neutral-900/40"
             >
               <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider">
@@ -59,6 +61,8 @@ export default function Writing() {
       <div className="mt-10">
         <a
           href={blogUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="focus-ring inline-flex items-center gap-1 font-medium text-neutral-700 transition-colors hover:text-[color:var(--accent)] dark:text-neutral-300"
         >
           All articles on The Brian Journal

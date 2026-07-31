@@ -83,6 +83,9 @@ export default function Header() {
                   <a
                     key={item.label}
                     href={item.href}
+                    {...(!item.href.startsWith("#")
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                     className="focus-ring menu-link block text-lg md:text-xl font-bold tracking-tight py-1.5 px-2 transition-colors duration-200 text-neutral-900 dark:text-white"
                     style={idx === 0 ? { color: ACCENT } : undefined}
                     onClick={(e) => {
