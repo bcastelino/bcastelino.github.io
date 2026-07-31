@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 const SITE_URL = "https://bcastelino.github.io";
 
 /**
- * robots.txt — allow all standard crawlers AND the AI answer-engine bots
+ * robots.txt: allow all standard crawlers AND the AI answer-engine bots
  * (so ChatGPT, Perplexity, Claude, Gemini and Copilot can cite the site).
  * Generated statically at build time (compatible with `output: 'export'`).
  */

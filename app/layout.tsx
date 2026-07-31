@@ -4,38 +4,24 @@ import "./globals.css";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import CookieConsent from "./components/CookieConsent";
 import Providers from "./components/Providers";
-import { personal } from "./lib/data";
+import { personal, certifications, education } from "./lib/data";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-fira" });
 
 const SITE_URL = "https://bcastelino.github.io";
-const SITE_TITLE = `${personal.fullName} — AI Data Engineer & Analytics`;
+const SITE_TITLE = "Brian Castelino | AI Data Engineer, Databricks & ML";
 const SITE_DESCRIPTION =
-  "Brian Denis Castelino is an AI Data Engineer and Product Analytics professional with 4.5+ years building scalable data platforms, ML/LLM applications, and self-service BI on Databricks, AWS, GCP and Azure.";
+  "AI Data Engineer shipping production ML, LLM and analytics systems on Databricks. Case studies, open-source contributions and verifiable certifications.";
+const OG_IMAGE = "/personal/og-card.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_TITLE,
-    template: `%s — ${personal.fullName}`,
+    template: `%s | ${personal.fullName}`,
   },
   description: SITE_DESCRIPTION,
-  keywords: [
-    "Brian Castelino",
-    "Brian Denis Castelino",
-    "AI Data Engineer",
-    "Data Engineer",
-    "Data Analytics",
-    "Product Analytics",
-    "Databricks",
-    "Machine Learning",
-    "MLOps",
-    "Generative AI",
-    "LLM",
-    "Power BI",
-    "Data Engineering Portfolio",
-  ],
   authors: [{ name: personal.fullName, url: SITE_URL }],
   creator: personal.fullName,
   publisher: personal.fullName,
@@ -45,16 +31,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    siteName: `${personal.fullName} — Portfolio`,
+    siteName: `${personal.fullName} | Portfolio`,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     locale: "en_US",
     images: [
       {
-        url: personal.profileImage,
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: `${personal.fullName} — AI Data Engineer`,
+        alt: `${personal.fullName}, AI Data Engineer`,
       },
     ],
   },
@@ -63,7 +49,7 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     creator: "@cas7elino",
-    images: [personal.profileImage],
+    images: [OG_IMAGE],
   },
   robots: {
     index: true,
@@ -110,7 +96,7 @@ const themeInitScript = `
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-    var sectionHash = /^#(about|projects|experience|education|certifications|contact)$/;
+    var sectionHash = /^#(work|open-source|projects|writing|experience|about|credentials|contact)$/;
     var hasSectionHash = location.hash && sectionHash.test(location.hash);
     if (!hasSectionHash) {
       if (location.hash && location.hash !== '#home' && history.state) {
@@ -144,12 +130,39 @@ const jsonLd = {
         addressRegion: "TX",
         addressCountry: "US",
       },
+      worksFor: {
+        "@type": "Organization",
+        name: "WorldLink US",
+        url: "https://worldlink-us.com/",
+      },
+      alumniOf: education.map((e) => ({
+        "@type": "CollegeOrUniversity",
+        name: e.school,
+      })),
+      hasCredential: certifications.map((c) => ({
+        "@type": "EducationalOccupationalCredential",
+        name: c.name,
+        credentialCategory: "certification",
+        recognizedBy: { "@type": "Organization", name: c.issuer },
+        ...(c.verifyUrl ? { url: c.verifyUrl } : {}),
+      })),
       knowsAbout: [
         "Data Engineering",
-        "Machine Learning",
-        "Generative AI",
         "Databricks",
+        "Apache Spark",
+        "PySpark",
+        "Delta Lake",
+        "Unity Catalog",
+        "MLflow",
         "MLOps",
+        "Machine Learning",
+        "Time Series Forecasting",
+        "Generative AI",
+        "Large Language Models",
+        "Retrieval Augmented Generation",
+        "Power BI",
+        "TMDL",
+        "Snowflake",
         "Business Intelligence",
         "Product Analytics",
       ],
@@ -163,7 +176,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
-      name: `${personal.fullName} — Portfolio`,
+      name: `${personal.fullName} | Portfolio`,
       description: SITE_DESCRIPTION,
       inLanguage: "en-US",
       publisher: { "@id": `${SITE_URL}/#person` },
@@ -189,6 +202,7 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <GoogleAnalytics />

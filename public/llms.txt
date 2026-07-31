@@ -1,24 +1,54 @@
-# Brian Denis Castelino — AI Data Engineer & Analytics
+# Brian Denis Castelino, AI Data Engineer
 
-> Personal portfolio of Brian Denis Castelino, an AI Data Engineer and Product Analytics professional based in Dallas, TX, USA, with 4.5+ years of experience designing scalable data platforms, deploying ML/LLM solutions, and delivering data-driven insights across enterprise environments. Core expertise: Databricks, cloud ecosystems (AWS, GCP, Azure), MLOps automation, generative AI, and self-service BI.
+> AI Data Engineer based in Dallas, TX, shipping production ML, LLM and analytics systems on Databricks. Five years in data: four in AdTech product analytics at Media.Net, now building forecasting platforms, inference services and natural-language-to-BI pipelines at WorldLink US. External contributor to the Databricks Labs OntoBricks project.
 
 ## About
 
-- Role: AI Data Engineer (currently at WorldLink US, since Sept 2025).
-- Education: MS in Data Analytics Engineering (George Mason University); BE in Information Technology (University of Mumbai).
-- Focus areas: end-to-end data pipelines, ML forecasting on Databricks (MLflow, XGBoost, CI/CD), LLM-powered NLQ-to-BI, MLOps, and Power BI / Tableau dashboards.
-- Certifications: Databricks (Data Engineer Professional/Associate, GenAI Engineer Associate), SnowPro (Advanced Data Engineer, Core), Google Cloud (Associate Cloud Engineer), Microsoft (Fabric Data Engineer Associate).
+- Role: AI Data Engineer at WorldLink US (since Sept 2025).
+- Previously: Senior Product Analyst and Product Analyst at Media.Net (2019–2023); Graduate Teaching Assistant at George Mason University (2024–2025).
+- Education: Master of Science, Data Analytics Engineering, George Mason University (2025), concentration in Data Modeling/Warehousing and Database Administration. BE Information Technology, University of Mumbai (2019).
+- Location: Dallas, TX, USA. Open to AI/ML Data Engineer, Analytics Engineering and Data Platform roles, including relocation and remote.
+- Core stack: Databricks (PySpark, Delta Lake, Unity Catalog, MLflow, Model Serving, Genie, Databricks Apps), Python, SQL, Power BI/TMDL, Snowflake.
+
+## Certifications
+
+All seven are independently verifiable at the issuer-hosted links on the site.
+
+- Databricks Certified Data Engineer Professional (2026)
+- SnowPro Advanced: Data Engineer (2026)
+- Google Cloud Associate Cloud Engineer (2025)
+- Microsoft Certified: Fabric Data Engineer Associate (2026)
+- Databricks Certified Generative AI Engineer Associate (2025)
+- Databricks Certified Data Engineer Associate (2025)
+- SnowPro Core (2026)
+
+## Case studies
+
+- [Forecasting platform on Databricks](https://bcastelino.github.io/work/forecasting-platform-databricks/): End-to-end price forecasting: MLflow registry, an automated validation gate with slice-level checks, and promotion modelled as a stage transition so rollback is a one-line change. Production, WorldLink US.
+- [Multi-model inference router](https://bcastelino.github.io/work/multi-model-inference-router/): One request contract serving five integration patterns (REST, polling, SSE, WebSockets, scheduled Databricks Jobs), holding sub-two-second responses at 1,000 concurrent users. Production, WorldLink US.
+- [Databricks Genie to Power BI](https://bcastelino.github.io/work/databricks-genie-power-bi-pipeline/): Natural-language questions become governed SQL through Genie, then a profiled result set, then a real TMDL/PBIR project. Visual selection is deterministic rules, not an LLM guess. Production, WorldLink US.
+- [Semantic model migration](https://bcastelino.github.io/work/semantic-model-migration/): Deterministic five-stage pipeline converting Power BI TMDL into governed Unity Catalog metric views: parse, translate, generate, deploy, validate, with flagged-measure review bundles and KPI parity checks against the baseline. Production, WorldLink US. [Product page](https://worldlink-us.ai/partners/databricks/semantic-model-migration).
+- [Power BI Dashboard Generator](https://bcastelino.github.io/work/powerbi-dashboard-generator/): Nine composable Agent Skills turning plain-English requests into valid, branded Power BI Desktop Projects. Open source, MIT.
+- [OntoBricks graph query bounds](https://bcastelino.github.io/work/ontobricks-graph-query-bounds/): Diagnosing and fixing an event-loop stall in databrickslabs/ontobricks where one broad question could freeze the whole application. Open source contribution.
+- [Medallion ETL pipeline](https://bcastelino.github.io/work/medallion-etl-databricks/): A small, readable Bronze/Silver/Gold reference on Databricks. Personal project, MIT.
+
+## Open source
+
+Four pull requests to [databrickslabs/ontobricks](https://github.com/databrickslabs/ontobricks) as an external contributor. Status as of 31 July 2026: PR #116 open, labelled "status: in progress" and accepted into milestone v0.7.0; PR #122 open, awaiting review; PRs #110 and #111 closed unmerged.
+
+## Projects
+
+- [Power BI Dashboard Generator](https://github.com/bcastelino/powerbi-dashboard-generator): Nine Agent Skills producing valid PBIP projects (Python, TMDL, PBIR, DAX).
+- [SEC Financial Chatbot](https://bcastelino.github.io/sec-financial-chatbot/): Ask about US public-company filings with citations back to sec.gov. Live XBRL retrieval, fully client-side, bring-your-own-key LLM. [Source](https://github.com/bcastelino/sec-financial-chatbot).
+- [Stock Market ETL Pipeline](https://github.com/bcastelino/stock-dash-e2e): Medallion pipeline on Databricks and Delta Lake.
+- [OCR Text Vision Pro](https://bcastelino.github.io/ocr-text-vision-pro/): Vision-LLM document extraction running in the browser. [Source](https://github.com/bcastelino/ocr-text-vision-pro).
+- [LinkedIn Data Visualizer](https://bcastelino.github.io/linkedin-data-visualizer/): Turns a LinkedIn export ZIP into an interactive dashboard, parsed entirely client-side. [Source](https://github.com/bcastelino/linkedin-data-visualizer).
 
 ## Key pages
 
-- [Portfolio home](https://bcastelino.github.io/): About, projects, experience, education, certifications, and contact.
-- [Blog — The Brian Journal](https://bcastelino.github.io/blogs/): Articles on data engineering, AI, and analytics.
-
-## Selected projects
-
-- Power BI Dashboard Generator: LLM-powered tool turning natural-language prompts into fully built Power BI dashboards (Python, LangChain, TMDL, OpenAI). https://github.com/bcastelino/powerbi-dashboard-generator
-- OCR Text Vision Pro: OCR + LLM post-processing pipeline for high-accuracy text extraction (Python, OpenCV, Tesseract). https://github.com/bcastelino/ocr-text-vision-pro
-- LinkedIn Data Visualizer: Interactive dashboard turning exported LinkedIn data into visual insights (OpenRouter, FastAPI, React). https://github.com/bcastelino/linkedin-data-visualizer
+- [Portfolio home](https://bcastelino.github.io/)
+- [All case studies](https://bcastelino.github.io/work/)
+- [The Brian Journal](https://bcastelino.github.io/blogs/): Writing on data engineering, AI and analytics.
 
 ## Contact
 
