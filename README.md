@@ -13,11 +13,11 @@
 
 ## ✨ Highlights
 
-- **Story-scroll sections** — GSAP ScrollTrigger pin + rotate-in choreography (skipped on touch devices and `prefers-reduced-motion`)
-- **Interactive WebGL footer** — custom GLSL dot-matrix with a mouse-reactive reveal, synced to the light/dark theme
-- **Motion system** — Framer Motion reveals with premium MD3 easing curves and press feedback on interactive elements
-- **Accessibility-first** — global reduced-motion support, visible focus rings on every interactive element, and a single accessible `<h1>`
-- **SEO & AI-ready** — JSON-LD, canonical URLs, `robots.txt`, `sitemap.xml`, and an `llms.txt` knowledge file for AI assistants
+- **Story-scroll sections**: GSAP ScrollTrigger pin + rotate-in choreography (skipped on touch devices and `prefers-reduced-motion`)
+- **Interactive WebGL footer**: custom GLSL dot-matrix with a mouse-reactive reveal, synced to the light/dark theme
+- **Motion system**: Framer Motion reveals with premium MD3 easing curves and press feedback on interactive elements
+- **Accessibility-first**: global reduced-motion support, visible focus rings on every interactive element, and a single accessible `<h1>`
+- **SEO & AI-ready**: JSON-LD, canonical URLs, `robots.txt`, `sitemap.xml`, and an `llms.txt` knowledge file for AI assistants
 
 ---
 
