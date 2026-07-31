@@ -526,7 +526,9 @@ export default function Footer() {
   useEffect(() => setMounted(true), []);
 
   // Section anchors + blog route, drawn from the shared nav (minus HOME).
-  const links = navItems.filter((n) => n.label !== "HOME");
+  const links = navItems.filter(
+    (n) => n.label !== "HOME" && n.label !== "WRITING",
+  );
 
   const socialLinks = [
     { href: personal.socials.linkedin, icon: <Linkedin size={22} />, ariaLabel: "LinkedIn" },
@@ -661,6 +663,8 @@ export default function Footer() {
           <p className="mt-2">
             <a
               href="/blogs/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="focus-ring underline-offset-4 hover:underline hover:text-[color:var(--accent)] transition-colors"
             >
               The Brian Journal
