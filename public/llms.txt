@@ -24,13 +24,13 @@ All seven are independently verifiable at the issuer-hosted links on the site.
 
 ## Case studies
 
-- [Forecasting platform on Databricks](https://bcastelino.github.io/work/forecasting-platform-databricks/): End-to-end price forecasting: MLflow registry, an automated validation gate with slice-level checks, and promotion modelled as a stage transition so rollback is a one-line change. Production, WorldLink US.
-- [Multi-model inference router](https://bcastelino.github.io/work/multi-model-inference-router/): One request contract serving five integration patterns (REST, polling, SSE, WebSockets, scheduled Databricks Jobs), holding sub-two-second responses at 1,000 concurrent users. Production, WorldLink US.
-- [Databricks Genie to Power BI](https://bcastelino.github.io/work/databricks-genie-power-bi-pipeline/): Natural-language questions become governed SQL through Genie, then a profiled result set, then a real TMDL/PBIR project. Visual selection is deterministic rules, not an LLM guess. Production, WorldLink US.
-- [Semantic model migration](https://bcastelino.github.io/work/semantic-model-migration/): Deterministic five-stage pipeline converting Power BI TMDL into governed Unity Catalog metric views: parse, translate, generate, deploy, validate, with flagged-measure review bundles and KPI parity checks against the baseline. Production, WorldLink US. [Product page](https://worldlink-us.ai/partners/databricks/semantic-model-migration).
-- [Power BI Dashboard Generator](https://bcastelino.github.io/work/powerbi-dashboard-generator/): Nine composable Agent Skills turning plain-English requests into valid, branded Power BI Desktop Projects. Open source, MIT.
-- [OntoBricks graph query bounds](https://bcastelino.github.io/work/ontobricks-graph-query-bounds/): Diagnosing and fixing an event-loop stall in databrickslabs/ontobricks where one broad question could freeze the whole application. Open source contribution.
-- [Medallion ETL pipeline](https://bcastelino.github.io/work/medallion-etl-databricks/): A small, readable Bronze/Silver/Gold reference on Databricks. Personal project, MIT.
+- [Forecasting platform on Databricks](https://bcastelino.com/work/forecasting-platform-databricks/): End-to-end price forecasting: MLflow registry, an automated validation gate with slice-level checks, and promotion modelled as a stage transition so rollback is a one-line change. Production, WorldLink US.
+- [Multi-model inference router](https://bcastelino.com/work/multi-model-inference-router/): One request contract serving five integration patterns (REST, polling, SSE, WebSockets, scheduled Databricks Jobs), holding sub-two-second responses at 1,000 concurrent users. Production, WorldLink US.
+- [Databricks Genie to Power BI](https://bcastelino.com/work/databricks-genie-power-bi-pipeline/): Natural-language questions become governed SQL through Genie, then a profiled result set, then a real TMDL/PBIR project. Visual selection is deterministic rules, not an LLM guess. Production, WorldLink US.
+- [Semantic model migration](https://bcastelino.com/work/semantic-model-migration/): Deterministic five-stage pipeline converting Power BI TMDL into governed Unity Catalog metric views: parse, translate, generate, deploy, validate, with flagged-measure review bundles and KPI parity checks against the baseline. Production, WorldLink US. [Product page](https://worldlink-us.ai/partners/databricks/semantic-model-migration).
+- [Power BI Dashboard Generator](https://bcastelino.com/work/powerbi-dashboard-generator/): Nine composable Agent Skills turning plain-English requests into valid, branded Power BI Desktop Projects. Open source, MIT.
+- [OntoBricks graph query bounds](https://bcastelino.com/work/ontobricks-graph-query-bounds/): Diagnosing and fixing an event-loop stall in databrickslabs/ontobricks where one broad question could freeze the whole application. Open source contribution.
+- [Medallion ETL pipeline](https://bcastelino.com/work/medallion-etl-databricks/): A small, readable Bronze/Silver/Gold reference on Databricks. Personal project, MIT.
 
 ## Open source
 
@@ -46,9 +46,9 @@ Four pull requests to [databrickslabs/ontobricks](https://github.com/databricksl
 
 ## Key pages
 
-- [Portfolio home](https://bcastelino.github.io/)
-- [All case studies](https://bcastelino.github.io/work/)
-- [The Brian Journal](https://bcastelino.github.io/blogs/): Writing on data engineering, AI and analytics.
+- [Portfolio home](https://bcastelino.com/)
+- [All case studies](https://bcastelino.com/work/)
+- [The Brian Journal](https://bcastelino.com/blogs/): Writing on data engineering, AI and analytics.
 
 ## Contact
 

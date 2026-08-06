@@ -3,7 +3,7 @@
 # bcastelino.github.io
 
 [![Deploy Status](https://github.com/bcastelino/bcastelino.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/bcastelino/bcastelino.github.io/actions/workflows/main.yml)
-[![Live Site](https://img.shields.io/badge/Live%20Site-bcastelino.github.io-blue?style=flat&logo=github)](https://bcastelino.github.io)
+[![Live Site](https://img.shields.io/badge/Live%20Site-bcastelino.com-blue?style=flat&logo=github)](https://bcastelino.com)
 
 > A single-page, scroll-driven portfolio built with **Next.js 14**, **TypeScript**, **Tailwind CSS**, **Framer Motion** and **GSAP ScrollTrigger**. Statically exported and deployed to GitHub Pages via GitHub Actions.
 
@@ -12,7 +12,7 @@
 ---
 
 <p align="center">
-  <a href="https://bcastelino.github.io/">
+  <a href="https://bcastelino.com/">
     <img src="public/personal/portfolio-ui.png" alt="Portfolio UI preview" width="100%" />
   </a>
 </p>
