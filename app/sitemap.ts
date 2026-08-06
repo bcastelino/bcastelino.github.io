@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { caseStudies } from "./lib/data";
 
-const SITE_URL = "https://bcastelino.github.io";
+const SITE_URL = "https://bcastelino.com";
 
 /**
  * sitemap.xml: the home page, the work index, every case study, and the

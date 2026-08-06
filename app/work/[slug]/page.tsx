@@ -6,7 +6,7 @@ import { caseStudies, caseStudyBySlug, personal } from "../../lib/data";
 import Diagram from "../../components/diagrams";
 import StatusBadge from "../../components/ui/StatusBadge";
 
-const SITE_URL = "https://bcastelino.github.io";
+const SITE_URL = "https://bcastelino.com";
 
 export function generateStaticParams() {
   return caseStudies.map((study) => ({ slug: study.slug }));

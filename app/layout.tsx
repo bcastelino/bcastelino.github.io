@@ -9,7 +9,7 @@ import { personal, certifications, education } from "./lib/data";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-fira" });
 
-const SITE_URL = "https://bcastelino.github.io";
+const SITE_URL = "https://bcastelino.com";
 const SITE_TITLE = "Brian Castelino | AI Data Engineer, Databricks & ML";
 const SITE_DESCRIPTION =
   "AI Data Engineer shipping production ML, LLM and analytics systems on Databricks. Case studies, open-source contributions and verifiable certifications.";

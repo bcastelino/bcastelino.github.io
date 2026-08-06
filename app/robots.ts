@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITE_URL = "https://bcastelino.github.io";
+const SITE_URL = "https://bcastelino.com";
 
 /**
  * robots.txt: allow all standard crawlers AND the AI answer-engine bots
