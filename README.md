@@ -86,7 +86,7 @@ Open source under the [MIT License](LICENSE.txt).
             <a href="https://github.com/bcastelino" target="_blank">GitHub</a> ·
             <a href="https://linkedin.com/in/cas7elino" target="_blank">LinkedIn</a> ·
             <a href="https://twitter.com/cas7elino" target="_blank">Twitter / X</a> ·
-            <a href="mailto:briancastelino07@gmail.com">Email</a>
+            <a href="mailto:contact@bcastelino.com">Email</a>
          </p>
       </td>
    </tr>

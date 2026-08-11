@@ -18,7 +18,7 @@ export const personal = {
   lastName: "CASTELINO",
   fullName: "Brian Denis Castelino",
   signature: "Br",
-  email: "briancastelino07@gmail.com",
+  email: "contact@bcastelino.com",
   location: "Dallas, TX, USA",
   /** Served from this domain, no third-party dependency. */
   resumePath: "/personal/Brian_Castelino_Resume.pdf",
