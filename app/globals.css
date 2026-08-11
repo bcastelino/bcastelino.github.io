@@ -86,6 +86,31 @@ body {
 }
 
 /*
+ * Signature "write-on": a left-to-right clip-path wipe that reveals the
+ * Great Vibes wordmark like handwriting. The resting state (no animation) is
+ * fully visible, so the mark can never get stuck hidden if the animation
+ * doesn't run. Re-triggered by remounting the inner span (key change).
+ */
+@keyframes signature-write {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+.signature-write {
+  animation: signature-write 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signature-write {
+    animation: none;
+  }
+}
+
+/*
  * Level-2 elevation: translucent light top edge + soft drop shadow.
  * The Framer "floating card" signature, palette-neutral.
  */
