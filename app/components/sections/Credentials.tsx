@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { BadgeCheck, FileText, ShieldCheck } from "lucide-react";
 import Section from "../Section";
 import HorizontalCarousel from "../ui/HorizontalCarousel";
+import Spotlight from "../ui/Spotlight";
 import { certifications, education } from "../../lib/data";
 
 const ACCENT = "var(--accent)";
@@ -104,7 +105,8 @@ export default function Credentials() {
             transition={{ duration: 0.6, delay: idx * 0.06, ease: "easeOut" }}
             className="elev-2 group relative flex w-[280px] flex-shrink-0 flex-col overflow-hidden rounded-[20px] border border-neutral-200 bg-white/40 backdrop-blur-sm transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-[color:var(--accent)] dark:border-neutral-800 dark:bg-neutral-900/40 sm:w-[300px] lg:w-[320px]"
           >
-            <div className="relative flex h-40 items-center justify-center bg-gradient-to-b from-neutral-100/60 to-transparent p-6 dark:from-neutral-900/60 dark:to-transparent">
+            <Spotlight />
+            <div className="relative z-10 flex h-40 items-center justify-center bg-gradient-to-b from-neutral-100/60 to-transparent p-6 dark:from-neutral-900/60 dark:to-transparent">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={cert.badge}
@@ -116,7 +118,7 @@ export default function Credentials() {
               />
             </div>
 
-            <div className="flex flex-1 flex-col p-5">
+            <div className="relative z-10 flex flex-1 flex-col p-5">
               <div className="mb-1 font-mono text-[11px] uppercase tracking-widest tabular-nums text-neutral-500">
                 {cert.issuer} · {cert.date}
               </div>

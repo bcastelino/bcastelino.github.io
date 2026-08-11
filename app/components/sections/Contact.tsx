@@ -109,6 +109,7 @@ export default function Contact() {
               rel="noopener noreferrer"
               text="Download Résumé"
               icon={<Download className="w-4 h-4" />}
+              magnetic
             />
           </div>
         </motion.div>
