@@ -1,6 +1,12 @@
 <div align="center">
 
-# bcastelino.github.io
+<p align="center">
+  <a href="https://bcastelino.com/">
+    <img src="public\personal\bc-logo.png" alt="Signature" width="30%" />
+  </a>
+</p>
+
+---
 
 [![Deploy Status](https://github.com/bcastelino/bcastelino.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/bcastelino/bcastelino.github.io/actions/workflows/main.yml)
 [![Live Site](https://img.shields.io/badge/Live%20Site-bcastelino.com-blue?style=flat&logo=github)](https://bcastelino.com)
