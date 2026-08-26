@@ -1,15 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import Section from "../Section";
+import StatsBand from "./StatsBand";
+import SkillBar from "../ui/SkillBar";
+import { useStackScroll } from "../../lib/hooks/useStackScroll";
 import { aboutParagraphs, interests, skillGroups } from "../../lib/data";
 
 const ACCENT = "var(--accent)";
 
 export default function About() {
+  const skillsRef = useRef<HTMLDivElement>(null);
+  useStackScroll(skillsRef, { base: 96, peek: 18 });
+
   return (
     <Section id="about" eyebrow="06 / About" title="Who I am.">
+      <StatsBand />
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-5 lg:gap-14">
         {/* Intro */}
         <motion.div
@@ -53,6 +60,7 @@ export default function About() {
 
         {/* Skills */}
         <motion.div
+          ref={skillsRef}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -62,7 +70,7 @@ export default function About() {
           {skillGroups.map((group) => (
             <div
               key={group.title}
-              className="rounded-[15px] bg-white/40 p-5 backdrop-blur-sm transition-colors hover:border-[color:var(--accent)] dark:bg-neutral-900/40"
+              className="rounded-[15px] bg-white/95 p-5 backdrop-blur-sm transition-colors hover:border-[color:var(--accent)] dark:bg-neutral-900/95"
               style={{
                 border:
                   "1px solid color-mix(in srgb, var(--accent) 28%, transparent)",
@@ -81,6 +89,11 @@ export default function About() {
               <p className="mb-3 mt-1 font-mono text-[11px] text-neutral-500">
                 {group.depth}
               </p>
+              <SkillBar
+                level={group.level}
+                label={`${group.title} proficiency`}
+                className="mb-4"
+              />
               <div className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <span

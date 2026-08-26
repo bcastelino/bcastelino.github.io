@@ -68,7 +68,7 @@ export default function Hero() {
       */}
       <div className="flex min-h-screen w-full flex-col">
         {/* Certification badge marquee */}
-        <div className="mt-20 w-full sm:mt-24 md:mt-28">
+        <div className="mt-32 w-full sm:mt-40 md:mt-44">
           <BadgeMarquee />
         </div>
 

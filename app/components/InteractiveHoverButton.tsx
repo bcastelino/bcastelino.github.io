@@ -13,6 +13,7 @@
 import React, { useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
 import { motion } from "framer-motion";
+import { useMagnetic } from "./../lib/hooks/useMagnetic";
 
 type ButtonStatus = "idle" | "loading" | "success";
 
@@ -22,6 +23,8 @@ type CommonProps = {
   successText?: string;
   className?: string;
   icon?: React.ReactNode;
+  /** Enable a springy magnetic pull toward the cursor (pointer-fine only). */
+  magnetic?: boolean;
 };
 
 type AsButtonProps = CommonProps &
@@ -50,7 +53,11 @@ export default function InteractiveHoverButton(props: Props) {
     successText = "Sent!",
     className,
     icon,
+    magnetic = false,
   } = props;
+
+  const magnetRef = useMagnetic<HTMLElement>(16);
+  const magneticProps = magnetic ? { ref: magnetRef as never } : {};
 
   // Internal status only used when rendered as a plain button without
   // an external `status` override.
@@ -129,12 +136,16 @@ export default function InteractiveHoverButton(props: Props) {
   );
 
   if (props.as === "a") {
-    const { as: _as, text: _t, loadingText: _l, successText: _s, className: _c, icon: _i, ...rest } = props;
+    const { as: _as, text: _t, loadingText: _l, successText: _s, className: _c, icon: _i, magnetic: _m, ...rest } = props;
     return (
       <motion.a
-        layout
+        // `layout` makes framer remount/re-measure the node, which orphans the
+        // magnetic ref's listener — so skip it when magnetic is enabled (the
+        // anchor variant never uses the layout grow anyway).
+        {...(!magnetic ? { layout: true as const } : {})}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
         className={baseClass}
+        {...magneticProps}
         {...(rest as any)}
       >
         {Idle}
@@ -150,6 +161,7 @@ export default function InteractiveHoverButton(props: Props) {
     successText: _s,
     className: _c,
     icon: _i,
+    magnetic: _m,
     status: _st,
     onClick,
     ...rest
@@ -160,6 +172,7 @@ export default function InteractiveHoverButton(props: Props) {
       layout
       transition={{ type: "spring", stiffness: 400, damping: 30 }}
       className={baseClass}
+      {...magneticProps}
       onClick={(e) => {
         if (!isIdle) return;
         // If no external status is supplied and there's no onClick to

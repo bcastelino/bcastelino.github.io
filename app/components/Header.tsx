@@ -3,8 +3,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { navItems, personal } from "../lib/data";
+import { navItems } from "../lib/data";
 import { ThemeToggle } from "./ThemeToggle";
+import Signature from "./Signature";
 import { goToSection, setHash } from "../lib/scroll";
 
 const ACCENT = "var(--accent)";
@@ -149,11 +150,10 @@ export default function Header() {
             }
             setIsMenuOpen(false);
           }}
-          className="focus-ring signature-glow text-3xl sm:text-4xl select-none transition-[color,text-shadow] duration-300 text-neutral-900 dark:text-white hover:text-[color:var(--accent)]"
-          style={{ fontFamily: "'Brush Script MT', 'Lucida Handwriting', cursive" }}
+          className="focus-ring signature-glow group inline-flex select-none items-center transition-[color,filter] duration-300 text-neutral-900 dark:text-white hover:text-[color:var(--accent)]"
           aria-label="Home"
         >
-          {personal.signature}
+          <Signature className="-mt-1 text-4xl leading-none sm:text-[2.35rem]" />
         </a>
 
         {/* Theme toggle */}
@@ -172,10 +172,10 @@ export default function Header() {
           color: ${ACCENT} !important;
         }
         .signature-glow:hover {
-          text-shadow:
-            0 0 6px color-mix(in srgb, ${ACCENT} 70%, transparent),
-            0 0 16px color-mix(in srgb, ${ACCENT} 55%, transparent),
-            0 0 32px color-mix(in srgb, ${ACCENT} 35%, transparent);
+          filter: drop-shadow(
+              0 0 6px color-mix(in srgb, ${ACCENT} 70%, transparent)
+            )
+            drop-shadow(0 0 14px color-mix(in srgb, ${ACCENT} 45%, transparent));
         }
       `}</style>
     </header>

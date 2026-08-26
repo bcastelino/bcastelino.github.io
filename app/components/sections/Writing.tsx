@@ -36,22 +36,34 @@ export default function Writing() {
               href={article.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="focus-ring group flex h-full flex-col rounded-[18px] border border-neutral-200 bg-white/40 p-6 transition-all hover:-translate-y-1 hover:border-[color:var(--accent)] dark:border-neutral-800 dark:bg-neutral-900/40"
+              className="focus-ring group relative flex h-full flex-col overflow-hidden rounded-[18px] border border-neutral-200 bg-white/40 p-6 transition-all hover:-translate-y-1 hover:border-[color:var(--accent)] dark:border-neutral-800 dark:bg-neutral-900/40"
             >
-              <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider">
+              {/* Accent wipe that rises from the bottom on hover */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 bottom-0 -z-0 h-full origin-bottom scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100"
+                style={{
+                  background:
+                    "linear-gradient(to top, color-mix(in srgb, var(--accent) 12%, transparent), transparent)",
+                }}
+              />
+              <div className="relative z-10 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider">
                 <span style={{ color: ACCENT }}>{article.topic}</span>
                 <span className="text-neutral-500">·</span>
                 <span className="text-neutral-500">{article.readTime}</span>
               </div>
-              <h3 className="display-md mt-4 text-base font-semibold leading-snug text-neutral-900 transition-colors group-hover:text-[color:var(--accent)] dark:text-white">
+              <h3 className="display-md relative z-10 mt-4 text-base font-semibold leading-snug text-neutral-900 transition-colors group-hover:text-[color:var(--accent)] dark:text-white">
                 {article.title}
               </h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+              <p className="relative z-10 mt-3 flex-1 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
                 {article.excerpt}
               </p>
-              <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-[color:var(--accent)]">
+              <span className="relative z-10 mt-5 inline-flex items-center gap-1 text-sm font-medium text-[color:var(--accent)]">
                 Read
-                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                <ArrowUpRight
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden="true"
+                />
               </span>
             </a>
           </motion.li>

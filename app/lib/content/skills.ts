@@ -5,6 +5,11 @@ export type SkillGroup = {
    * whether you have run something in production or read its landing page.
    */
   depth: string;
+  /**
+   * Self-assessed proficiency (0-100), used to fill the skill bar. A
+   * qualitative confidence marker, deliberately not a benchmark score.
+   */
+  level: number;
   items: string[];
 };
 
@@ -12,6 +17,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Databricks & Lakehouse",
     depth: "Daily, in production, since 2025",
+    level: 94,
     items: [
       "PySpark",
       "Delta Lake",
@@ -26,6 +32,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "ML & MLOps",
     depth: "Production forecasting platform, 3 registered model versions",
+    level: 80,
     items: [
       "MLflow",
       "XGBoost",
@@ -40,6 +47,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "LLM & Agent Engineering",
     depth: "Shipped agent skill toolkits and retrieval apps in the open",
+    level: 90,
     items: [
       "RAG",
       "Prompt engineering",
@@ -54,6 +62,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Data Engineering",
     depth: "Five years building ingestion and transformation pipelines",
+    level: 95,
     items: [
       "SQL",
       "Python",
@@ -68,6 +77,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "BI & Semantic Modelling",
     depth: "Automated the SQL-to-visual path end to end",
+    level: 90,
     items: [
       "Power BI",
       "TMDL",
@@ -81,6 +91,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Platform & Tooling",
     depth: "How the work actually ships",
+    level: 85,
     items: [
       "Git & GitHub Actions",
       "Docker",

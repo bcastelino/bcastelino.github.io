@@ -1,15 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, GitPullRequest, GitPullRequestClosed } from "lucide-react";
 import Section from "../Section";
+import { useStackScroll } from "../../lib/hooks/useStackScroll";
 import { openSourceProject, pullRequests } from "../../lib/data";
 
 const ACCENT = "var(--accent)";
 
 export default function OpenSource() {
+  const listRef = useRef<HTMLUListElement>(null);
+  useStackScroll(listRef, { base: 96, peek: 18 });
+
   return (
     <Section id="open-source" eyebrow="02 / Open source" title="Other people's codebases.">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-5 lg:gap-14">
@@ -45,6 +49,7 @@ export default function OpenSource() {
         </motion.div>
 
         <motion.ul
+          ref={listRef}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
@@ -57,7 +62,7 @@ export default function OpenSource() {
             return (
               <li
                 key={pr.number}
-                className="rounded-[16px] border border-neutral-200 bg-white/40 p-5 transition-colors hover:border-[color:var(--accent)] dark:border-neutral-800 dark:bg-neutral-900/40"
+                className="elev-2 rounded-[16px] border border-neutral-200 bg-white/95 p-5 backdrop-blur-sm transition-colors hover:border-[color:var(--accent)] dark:border-neutral-800 dark:bg-neutral-900/95"
               >
                 <div className="flex items-start gap-3">
                   <Icon

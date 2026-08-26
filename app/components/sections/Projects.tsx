@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import Section from "../Section";
 import HorizontalCarousel from "../ui/HorizontalCarousel";
-import StatusBadge from "../ui/StatusBadge";
+import Spotlight from "../ui/Spotlight";
 import {
   projects,
   githubRepoUrl,
@@ -63,15 +63,13 @@ export default function Projects() {
               transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
               className="elev-2 group relative flex w-[300px] flex-shrink-0 flex-col overflow-hidden rounded-[20px] border border-neutral-200 bg-white/40 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1 active:scale-[0.98] dark:border-neutral-800 dark:bg-neutral-900/40 sm:w-[340px] lg:w-[380px]"
             >
-              <div className="relative block aspect-[16/9] overflow-hidden bg-neutral-100 dark:bg-neutral-900">
+              <Spotlight />
+              <div className="relative z-10 block aspect-[16/9] overflow-hidden bg-neutral-100 dark:bg-neutral-900">
                 <ProjectPreview project={project} />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute left-3 top-3">
-                  <StatusBadge status={project.status} />
-                </div>
               </div>
 
-              <div className="flex flex-1 flex-col p-6">
+              <div className="relative z-10 flex flex-1 flex-col p-6">
                 <h3
                   className="display-md mb-2 text-xl font-semibold text-neutral-900 transition-colors dark:text-white"
                   style={{ fontFamily: "'Fira Code', ui-monospace, monospace" }}

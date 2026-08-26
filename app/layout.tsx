@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Fira_Code } from "next/font/google";
+import { Inter, Fira_Code, Great_Vibes } from "next/font/google";
 import "./globals.css";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import CookieConsent from "./components/CookieConsent";
@@ -8,6 +8,11 @@ import { personal, certifications, education } from "./lib/data";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-fira" });
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-signature",
+});
 
 const SITE_URL = "https://bcastelino.com";
 const SITE_TITLE = "Brian Castelino | AI Data Engineer, Databricks & ML";
@@ -192,7 +197,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${firaCode.variable} scroll-smooth`}
+      className={`${inter.variable} ${firaCode.variable} ${greatVibes.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <head>
