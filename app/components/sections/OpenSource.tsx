@@ -3,12 +3,13 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, GitPullRequest, GitPullRequestClosed } from "lucide-react";
+import { ArrowUpRight, GitMerge, GitPullRequest, GitPullRequestClosed } from "lucide-react";
 import Section from "../Section";
 import { useStackScroll } from "../../lib/hooks/useStackScroll";
 import { openSourceProject, pullRequests } from "../../lib/data";
 
 const ACCENT = "var(--accent)";
+const MERGED = "#8957e5";
 
 export default function OpenSource() {
   const listRef = useRef<HTMLUListElement>(null);
@@ -58,7 +59,10 @@ export default function OpenSource() {
         >
           {pullRequests.map((pr) => {
             const isOpen = pr.state === "open";
-            const Icon = isOpen ? GitPullRequest : GitPullRequestClosed;
+            const isMerged = pr.state === "merged";
+            const Icon = isMerged ? GitMerge : isOpen ? GitPullRequest : GitPullRequestClosed;
+            const statusColor = isMerged ? MERGED : isOpen ? ACCENT : undefined;
+            const highlight = isMerged || isOpen;
             return (
               <li
                 key={pr.number}
@@ -67,7 +71,7 @@ export default function OpenSource() {
                 <div className="flex items-start gap-3">
                   <Icon
                     className="mt-0.5 h-4 w-4 flex-shrink-0"
-                    style={{ color: isOpen ? ACCENT : "currentColor" }}
+                    style={{ color: statusColor ?? "currentColor" }}
                     aria-hidden="true"
                   />
                   <div className="min-w-0 flex-1">
@@ -83,9 +87,9 @@ export default function OpenSource() {
                     </div>
                     <p
                       className="mt-1 font-mono text-[11px] uppercase tracking-wider"
-                      style={{ color: isOpen ? ACCENT : undefined }}
+                      style={{ color: statusColor }}
                     >
-                      <span className={isOpen ? "" : "text-neutral-500"}>{pr.status}</span>
+                      <span className={highlight ? "" : "text-neutral-500"}>{pr.status}</span>
                     </p>
                     <p className="mt-3 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
                       {pr.summary}

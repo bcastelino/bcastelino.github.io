@@ -34,7 +34,7 @@ All seven are independently verifiable at the issuer-hosted links on the site.
 
 ## Open source
 
-Four pull requests to [databrickslabs/ontobricks](https://github.com/databrickslabs/ontobricks) as an external contributor. Status as of 31 July 2026: PR #116 open, labelled "status: in progress" and accepted into milestone v0.7.0; PR #122 open, awaiting review; PRs #110 and #111 closed unmerged.
+Four pull requests to [databrickslabs/ontobricks](https://github.com/databrickslabs/ontobricks) as an external contributor. Status as of 26 August 2026: PR #116 merged, shipped in milestone v0.7.0; PR #122 merged; PRs #110 and #111 closed unmerged.
 
 ## Projects
 

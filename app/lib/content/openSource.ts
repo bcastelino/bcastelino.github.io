@@ -7,7 +7,7 @@
  *   2. Status lives in this file as a plain string per PR, so keeping it
  *      honest is a one-word edit rather than a rewrite.
  *
- * Last verified against the GitHub API: 31 July 2026.
+ * Last verified against the GitHub API: 26 August 2026.
  */
 
 export type PullRequestState = "open" | "closed" | "merged";
@@ -34,7 +34,7 @@ export const openSourceProject = {
   role: "External contributor",
   blurb:
     "Four pull requests to a Databricks Labs repository I do not maintain. Working in someone else's production codebase, with their review standards, their CI and their release process, is the closest thing to a public integration test for how you actually engineer.",
-  lastVerified: "31 July 2026",
+  lastVerified: "26 August 2026",
 };
 
 export const pullRequests: PullRequest[] = [
@@ -42,8 +42,8 @@ export const pullRequests: PullRequest[] = [
     number: 116,
     title: "Bound and offload graph reads so Graph Chat can't hang the app",
     url: "https://github.com/databrickslabs/ontobricks/pull/116",
-    state: "open",
-    status: "Open: labelled 'status: in progress', accepted into milestone v0.7.0",
+    state: "merged",
+    status: "Merged: shipped in milestone v0.7.0",
     summary:
       "A broad question in Graph Chat could freeze the entire app until redeploy: a slow graph read ran directly on the single uvicorn event loop, starving every other request, and was unbounded in both time and result size. This bounds every read server-side, moves the blocking work off the event loop, auto-sizes the worker pool to the instance, and degrades a slow query to a clean per-request cancellation instead of a global stall.",
     caseStudy: "ontobricks-graph-query-bounds",
@@ -52,8 +52,8 @@ export const pullRequests: PullRequest[] = [
     number: 122,
     title: "Prefer configured registry volume over legacy session defaults",
     url: "https://github.com/databrickslabs/ontobricks/pull/122",
-    state: "open",
-    status: "Open: awaiting review",
+    state: "merged",
+    status: "Merged",
     summary:
       "Registry configuration resolved in the wrong precedence order, so a stale per-session value could shadow the configured environment and send binary archives and Delta views to the wrong Unity Catalog Volume. A single-file precedence fix with regression coverage.",
   },
